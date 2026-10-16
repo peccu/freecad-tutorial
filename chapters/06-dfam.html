@@ -1,0 +1,191 @@
+<section class="chapter" id="ch-dfam" data-no="6" data-title="印刷を意識した設計" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>印刷を意識した設計</h1>
+    <p class="lead">CAD 上で正しい形でも、そのまま印刷できるとは限らない。プリンタの癖（第1章）を設計に織り込むと、スライサーの設定に頼らずに失敗を減らせる。</p>
+  </article>
+
+  <article class="slide" data-title="印刷向きを決める">
+    <h2>印刷向きを決める</h2>
+    <p>同じ部品でも、どの面を下にするかでサポートの量・強さ・見た目・時間がすべて変わる。壁掛けフックで比べる。</p>
+    <figure class="fig" data-demo="orient">
+      <figcaption>壁掛けフックの印刷向き。赤い面はサポートが必要なオーバーハング。ドラッグで視点を回せる。</figcaption>
+    </figure>
+    <p>判断の順番は次の通り。</p>
+    <ol>
+      <li>力がかかる部品なら、荷重が層をはがさない向き</li>
+      <li>広く平らな面がプレートに接する向き</li>
+      <li>サポートが少ない向き</li>
+      <li>見える面がサポート跡や段差で汚れない向き</li>
+    </ol>
+    <p>フックの場合、「側面を下」だけが強度とサポートの両方を満たす。設計の段階で印刷向きを決めておき、その向きでオーバーハングが出ない形にする。</p>
+  </article>
+
+  <article class="slide" data-title="オーバーハングと 45° の目安">
+    <h2>オーバーハングと 45° の目安</h2>
+    <p><span class="term">オーバーハング</span>は、下の層からせり出して積まれる部分。せり出しが大きいと、新しい線の下に支えがなくなって垂れる。</p>
+    <figure class="fig" data-demo="overhang">
+      <figcaption>傾きと積層の関係。45° を超えるあたりから、線の下に支えがない部分（赤）が増える。</figcaption>
+    </figure>
+    <p>45° を超える部分は、次のいずれかで<span class="term">サポート</span>なしにできることが多い。</p>
+    <ul>
+      <li>直角の張り出しを、45° の面取りに置き換える</li>
+      <li>部品の向きを変える</li>
+      <li>両端が支えられた水平の橋（<span class="term">ブリッジ</span>）にする</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="ブリッジとティアドロップ">
+    <h2>ブリッジとティアドロップ</h2>
+    <p>横向きの穴は、上半分の天井がほぼ水平になるため垂れやすい。</p>
+    <figure class="fig" data-demo="teardrop">
+      <figcaption>横穴の形と垂れやすさ。</figcaption>
+    </figure>
+    <dl class="defs">
+      <dt>ティアドロップ</dt><dd>穴の上部を 45° の山形にする。ねじの通し穴など、形が多少変わっても困らない穴に向く。</dd>
+      <dt>ブリッジ</dt><dd>上部を水平に切り、両端から橋渡しで印刷する。10mm 程度までなら安定しやすい。それ以上は機種・材料・冷却次第。</dd>
+    </dl>
+    <div class="box point"><p>縦向きの穴（プレートに垂直な穴）はこの問題が起きない。穴の精度が大事なら、穴が縦になる向きを優先する。</p></div>
+  </article>
+
+  <article class="slide" data-title="最小寸法の目安">
+    <h2>最小寸法の目安</h2>
+    <p>壁は線を何本か並べて作られる。厚さが線幅の整数倍からずれると、端数が細い充填線になる。</p>
+    <figure class="fig" data-demo="walllines">
+      <figcaption>壁の厚さと線の本数（0.4mm ノズル、線幅 0.42mm、4層ぶんの断面）。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <caption>0.4mm ノズルでの目安</caption>
+      <tr><th>部位</th><th class="num">最小</th><th class="num">推奨</th></tr>
+      <tr><td>壁の厚さ</td><td class="num">0.8 mm</td><td class="num">1.2〜1.6 mm</td></tr>
+      <tr><td>立てたピンの直径</td><td class="num">2 mm</td><td class="num">3 mm 以上</td></tr>
+      <tr><td>縦穴の直径</td><td class="num">1.5 mm</td><td class="num">2 mm 以上</td></tr>
+      <tr><td>浮き出し文字の線の太さ</td><td class="num">0.5 mm</td><td class="num">0.8 mm 以上</td></tr>
+      <tr><td>彫り込み文字の幅・深さ</td><td class="num">0.6 ／ 0.4 mm</td><td class="num">0.8 ／ 0.6 mm</td></tr>
+      <tr><td>可動部品のすき間</td><td class="num">0.3 mm</td><td class="num">0.4 mm</td></tr>
+    </table></div>
+    <p>文字は高さ 5mm 以上の太めのゴシック体が読みやすい。上面に置いた文字がもっともきれいに出る。</p>
+  </article>
+
+  <article class="slide" data-title="公差とはめ合い">
+    <h2>公差とはめ合い</h2>
+    <p>はめ合う部品には必ず<span class="term" data-term="公差・クリアランス">すき間</span>を設ける。値は「片側のすき間」で考え、穴径や内寸には2倍して反映する。</p>
+    <div class="table-wrap"><table>
+      <caption>片側のすき間の出発点（PLA・0.4mm ノズル。実機の試し印刷で調整する）</caption>
+      <tr><th>はまり方</th><th class="num">片側のすき間</th><th>例</th></tr>
+      <tr><td>圧入（抜けない）</td><td class="num">0〜0.1 mm</td><td>ベアリングの固定</td></tr>
+      <tr><td>押し込んで固定</td><td class="num">0.1〜0.15 mm</td><td>ピンの差し込み</td></tr>
+      <tr><td>手で着脱</td><td class="num">0.2〜0.25 mm</td><td>ケースのフタ</td></tr>
+      <tr><td>回る・滑る</td><td class="num">0.3〜0.4 mm</td><td>ヒンジの軸、スライド</td></tr>
+      <tr><td>一体印刷の可動部</td><td class="num">0.3〜0.5 mm</td><td>印刷したまま動く関節</td></tr>
+    </table></div>
+    <figure class="fig narrow" data-demo="testpiece">
+      <figcaption>すき間テストピースの例。数値違いの穴を並べて1回で比べる。</figcaption>
+    </figure>
+    <div class="box point"><p>テストピースは、本番と同じ材料・同じ向き・同じ設定で印刷する。向きが変わると結果も変わる。</p></div>
+  </article>
+
+  <article class="slide" data-title="底面の面取り">
+    <h2>底面の面取り</h2>
+    <p>第1層はプレートに押し付けて密着させるため、外側にわずかにはみ出す（<span class="term">象の足</span>）。</p>
+    <figure class="fig" data-demo="elephant">
+      <figcaption>象の足と、底辺の面取りによる対策（誇張して表示）。</figcaption>
+    </figure>
+    <p>底面の外周に 0.4〜0.6mm の 45° 面取りを入れると、はみ出しが面取りの中に収まる。はめ合いの寸法が底面にかかる部品では特に有効。スライサー側にも補正機能がある（<a href="#ch-slice/9">第10章</a>）。</p>
+    <div class="box warn"><p>底面にフィレット（丸め）を付けると、丸めの下側がオーバーハングになる。底面は面取り、上側の角はフィレット、と使い分ける。</p></div>
+  </article>
+
+  <article class="slide" data-title="ねじ・ナット・インサート">
+    <h2>ねじ・ナット・インサート</h2>
+    <figure class="fig" data-demo="nuttrap">
+      <figcaption>M3 ナットを埋め込む六角穴。二面幅と厚さに 0.2mm 前後の余裕を持たせる。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <caption>穴径の目安（縦穴・PLA。横穴や他材料では調整）</caption>
+      <tr><th>ねじ</th><th class="num">タッピング下穴</th><th class="num">通し穴</th><th class="num">ナット六角穴（二面幅）</th></tr>
+      <tr><td>M2</td><td class="num">1.6〜1.8</td><td class="num">2.3〜2.4</td><td class="num">4.2</td></tr>
+      <tr><td>M2.5</td><td class="num">2.1〜2.2</td><td class="num">2.8〜2.9</td><td class="num">5.2</td></tr>
+      <tr><td>M3</td><td class="num">2.5〜2.8</td><td class="num">3.3〜3.4</td><td class="num">5.7〜5.8</td></tr>
+      <tr><td>M4</td><td class="num">3.3〜3.6</td><td class="num">4.3〜4.5</td><td class="num">7.2〜7.3</td></tr>
+      <tr><td>M5</td><td class="num">4.2〜4.5</td><td class="num">5.3〜5.5</td><td class="num">8.2〜8.3</td></tr>
+    </table></div>
+    <dl class="defs">
+      <dt>ヒートセットインサート</dt><dd>はんだごてで加熱して押し込む金属ナット。繰り返し着脱するねじ穴に向く。穴径は製品の推奨値に従う（M3 用で φ4.0〜4.2 前後が多い）。</dd>
+      <dt>ナットを途中で埋める</dt><dd>六角穴の上を印刷途中で覆う方法もある。Bambu Studio の一時停止を使う（<a href="#ch-bsadv/5">第11章</a>）。</dd>
+    </dl>
+  </article>
+
+  <article class="slide" data-title="スナップフィットとヒンジ">
+    <h2>スナップフィットとヒンジ</h2>
+    <p>しなって引っかかる爪（スナップフィット）は、しなる梁の向きと層の向きの関係で寿命が決まる。</p>
+    <figure class="fig" data-demo="snap">
+      <figcaption>片持ち梁のスナップフィット。梁の長手方向に層が並ぶ向きで印刷する。</figcaption>
+    </figure>
+    <ul>
+      <li>梁の長さは厚さの5倍以上。短く太い梁はしならずに折れる</li>
+      <li>根元に R0.5 以上のフィレット。角に力が集中しなくなる</li>
+      <li>何度も着脱するなら PLA より PETG が向く</li>
+      <li>一体印刷のヒンジは、軸と穴のすき間 0.3〜0.5mm から試す</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="大きな部品の分割">
+    <h2>大きな部品の分割</h2>
+    <figure class="fig" data-demo="split">
+      <figcaption>プレートに収まらない部品を2つに分け、ダボで位置を合わせる。</figcaption>
+    </figure>
+    <ul>
+      <li>分割面は平らな面に。そのままプレートに接する面になる</li>
+      <li>位置合わせにダボ（ピンと穴）か蟻溝を付ける。ピンと穴のすき間は 0.15mm 前後</li>
+      <li>接着は PLA なら瞬間接着剤、ABS・ASA ならアセトン系も使える</li>
+      <li>形状が単純なら、Bambu Studio のカットツールでコネクタ付きに分割する方法もある（<a href="#ch-bsadv/7">第11章</a>）</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="書き出し前の設計レビュー">
+    <h2>書き出し前の設計レビュー</h2>
+    <p>書き出す前に確認する項目。チェックはブラウザに保存される。</p>
+    <ul class="checklist" data-key="dfam-review" data-reset>
+      <li>印刷向きを決めた。その向きで、プレートに接する平らな面がある</li>
+      <li>45° を超えるオーバーハングは、形で対策したか、サポート前提と決めた</li>
+      <li>力のかかる方向と積層方向の関係を確認した</li>
+      <li>壁の厚さは 0.8mm 以上で、線幅のおよそ整数倍</li>
+      <li>はめ合う部分にすき間（clr）を設けた</li>
+      <li>ねじ穴は下穴・通し穴の目安で設計した</li>
+      <li>はめ合いや見た目に関わる底面の外周に面取りを入れた</li>
+      <li>プレートの大きさに収まる（収まらなければ分割）</li>
+      <li>薄い突起・鋭い角など、折れやすい部分がない</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="確認問題">
+    <h2>確認問題</h2>
+    <div class="quiz" data-id="df-1">
+      <p class="q">サポートなしで横向きのねじ通し穴を開けたい。適した形はどれか。</p>
+      <div class="opts">
+        <button>真円のまま</button>
+        <button data-correct>上部を 45° の山形にしたティアドロップ形</button>
+        <button>上部を 30mm 幅の水平な天井にした形</button>
+      </div>
+      <p class="explain">ティアドロップ形は天井の傾きが 45° 以内に収まる。真円の上部はほぼ水平で垂れやすく、幅 30mm のブリッジも長すぎる。</p>
+    </div>
+    <div class="quiz" data-id="df-2">
+      <p class="q">直径 8mm の軸を「手で着脱」できる穴に通したい。穴径の出発点として妥当なのはどれか。</p>
+      <div class="opts">
+        <button>8.0mm</button>
+        <button>8.2mm</button>
+        <button data-correct>8.4〜8.5mm</button>
+      </div>
+      <p class="explain">片側 0.2〜0.25mm を両側に取るので、8 + 2×(0.2〜0.25) = 8.4〜8.5mm。実機の試し印刷で詰める。</p>
+    </div>
+    <div class="quiz" data-id="df-3">
+      <p class="q">底面の外周に入れる処理として適切なのはどれか。</p>
+      <div class="opts">
+        <button>R1 のフィレット</button>
+        <button data-correct>0.4〜0.6mm の 45° 面取り</button>
+        <button>何もしないのがもっとも正確</button>
+      </div>
+      <p class="explain">底面のフィレットは下側がオーバーハングになる。面取りなら 45° に収まり、象の足も隠せる。</p>
+    </div>
+  </article>
+</section>

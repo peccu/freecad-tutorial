@@ -1,0 +1,87 @@
+<section class="chapter" id="ch-fcui" data-no="2" data-title="FreeCAD の基本操作" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>FreeCAD の基本操作</h1>
+    <p class="lead">画面の構成、<span class="term">ワークベンチ</span>、視点の動かし方、最初に済ませておく設定。FreeCAD は機能が多く、最初は「どこを見ればよいか」で迷いやすい。</p>
+  </article>
+
+  <article class="slide" data-title="画面の構成">
+    <h2>画面の構成</h2>
+    <figure class="fig" data-demo="fcui">
+      <figcaption>FreeCAD のメインウィンドウ（模式図）。番号を選ぶと説明が出る。</figcaption>
+    </figure>
+    <p>実際に手を動かすのは、ほとんどが 3Dビュー・モデルツリー・タスクパネルの3か所。ツールを起動するとコンボビューが［タスク］タブに切り替わり、そこで数値を入れて <span class="ui">OK</span> で確定する。</p>
+    <div class="box lost"><p>パネルを閉じてしまったら［表示］→［パネル］から、ツールバーが消えたら［表示］→［ツールバー］から戻す。</p></div>
+  </article>
+
+  <article class="slide" data-title="ワークベンチ">
+    <h2>ワークベンチ</h2>
+    <p>FreeCAD は目的ごとのツール群（ワークベンチ）を切り替えて使う。3Dプリント用の部品は、ほぼ Part Design だけで作れる。</p>
+    <div class="table-wrap"><table>
+      <tr><th>ワークベンチ</th><th>用途</th><th>本書での扱い</th></tr>
+      <tr><th scope="row">Part Design</th><td>スケッチから1つの立体を積み上げて作る</td><td>中心（第4章）</td></tr>
+      <tr><th scope="row">Sketcher</th><td>2D のスケッチを描く。Part Design から自動で呼ばれる</td><td>第3章</td></tr>
+      <tr><th scope="row">Part</th><td>直方体・円柱などの基本形状とブーリアン演算</td><td>干渉確認で少し使う</td></tr>
+      <tr><th scope="row">Assembly</th><td>複数部品をジョイントで組む</td><td>第7章</td></tr>
+      <tr><th scope="row">Mesh Design</th><td>メッシュの確認・修正</td><td>第8章</td></tr>
+      <tr><th scope="row">Spreadsheet</th><td>寸法を表で管理する</td><td>第5章</td></tr>
+      <tr><th scope="row">TechDraw</th><td>2D 図面の作成</td><td>扱わない</td></tr>
+    </table></div>
+    <div class="box fail"><p>Part ワークベンチの直方体と Part Design のボディを混ぜて使い、後から修正できなくなる。最初のうちは「ボディを作ってからスケッチ」の流れに統一する。</p></div>
+  </article>
+
+  <article class="slide" data-title="視点の操作">
+    <h2>視点の操作</h2>
+    <p>数字キーで標準の向きに切り替えられる。下の図で試せる（図をクリックしてから数字キーも使える）。</p>
+    <figure class="fig" data-demo="views">
+      <figcaption>標準ビューの切り替え。FreeCAD と同じく、正面は −Y 側から、上面は +Z 側から見た向き。</figcaption>
+    </figure>
+    <h3>マウス操作</h3>
+    <p>マウス操作の割り当ては「ナビゲーションスタイル」で決まる。現在のスタイルはステータスバー右端に表示され、クリックで切り替えられる。</p>
+    <div class="table-wrap"><table>
+      <tr><th>操作</th><th>CAD スタイル</th><th>Gesture スタイル</th></tr>
+      <tr><td>回転</td><td>中ボタンを押したまま左（または右）ボタンでドラッグ</td><td>左ボタンでドラッグ</td></tr>
+      <tr><td>平行移動</td><td>中ボタンでドラッグ</td><td>右ボタンでドラッグ</td></tr>
+      <tr><td>拡大縮小</td><td>ホイール</td><td>ホイール</td></tr>
+      <tr><td>選択</td><td>左クリック（<kbd>Ctrl</kbd> で追加）</td><td>左クリック（<kbd>Ctrl</kbd> で追加）</td></tr>
+    </table></div>
+    <div class="box verify"><p>ノートPC のタッチパッドでは「Touchpad」や「Gesture」が扱いやすい。スタイルごとの詳しい割り当ては、ステータスバーのスタイル名にポインタを合わせると表示される。</p></div>
+  </article>
+
+  <article class="slide" data-title="最初に済ませる設定">
+    <h2>最初に済ませる設定</h2>
+    <p>設定画面は Windows・Linux では［編集］→［設定］、macOS では［FreeCAD］→［設定］。1.1 から設定画面に検索欄が付いた。</p>
+    <ol class="steps progressive">
+      <li><b>単位系</b>　［一般］→ 単位系を <code>Standard (mm, kg, s, °)</code> にする。小数点以下の桁数は 2 以上</li>
+      <li><b>ナビゲーションスタイル</b>　［表示］→［ナビゲーション］で、手になじむスタイルを選ぶ。迷ったら CAD</li>
+      <li><b>バックアップ</b>　［一般］→［文書］で、保存時のバックアップファイル数を 2〜3 に。自動保存（復旧情報）も有効にする</li>
+      <li><b>言語</b>　［一般］→ 言語。メニュー名を英語の解説と照らし合わせたいときは English に切り替える</li>
+    </ol>
+    <div class="box verify"><p>設定項目の場所は版によって移動することがある。見つからないときは設定画面の検索欄に「単位」「バックアップ」などと入れる。</p></div>
+  </article>
+
+  <article class="slide" data-title="ファイルと保存">
+    <h2>ファイルと保存</h2>
+    <dl class="defs">
+      <dt>.FCStd</dt><dd>FreeCAD の文書ファイル。形状・履歴・スプレッドシートがまとめて入る。中身は ZIP 形式。</dd>
+      <dt>.FCBak</dt><dd>保存時に自動で作られる1つ前の版。拡張子を .FCStd に変えると開ける。</dd>
+      <dt>再計算</dt><dd>寸法を変えたあと形状を作り直す処理。ツールバーの再計算ボタン、または <kbd>Ctrl</kbd>+<kbd>R</kbd>。ツリーに青い再計算マークが付いたものが対象。</dd>
+      <dt>元に戻す</dt><dd><kbd>Ctrl</kbd>+<kbd>Z</kbd>。スケッチ編集中は、スケッチ内の操作だけが対象になる。</dd>
+    </dl>
+    <div class="box point"><p>3Dプリンタ用に書き出す STL・3MF とは別に、元の .FCStd を必ず残す。寸法の修正は .FCStd 側で行う。</p></div>
+  </article>
+
+  <article class="slide" data-title="迷ったときの戻り方">
+    <h2>迷ったときの戻り方</h2>
+    <div class="table-wrap"><table>
+      <tr><th>状況</th><th>対処</th></tr>
+      <tr><td>形状が画面から消えた・小さすぎる</td><td><kbd>V</kbd> <kbd>F</kbd>（全体表示）</td></tr>
+      <tr><td>どの向きから見ているか分からない</td><td><kbd>0</kbd>（アイソメ）か <kbd>1</kbd>（正面）</td></tr>
+      <tr><td>形状が見えない（ツリーにはある）</td><td>選択して <kbd>Space</kbd> で表示を切り替え</td></tr>
+      <tr><td>ツールのボタンが見当たらない</td><td>ワークベンチが Part Design になっているか確認</td></tr>
+      <tr><td>何かの編集モードから抜けられない</td><td>タスクパネルの <span class="ui">閉じる</span> ／ <span class="ui">キャンセル</span>、または <kbd>Esc</kbd></td></tr>
+      <tr><td>ツリーに赤や黄色の印が出た</td><td>レポートビューでエラー内容を読む。直前の操作を <kbd>Ctrl</kbd>+<kbd>Z</kbd></td></tr>
+      <tr><td>新しく足した形状が反映されない</td><td>Tip（先端）の位置を確認（<a href="#ch-partdesign/2">第4章</a>）</td></tr>
+    </table></div>
+  </article>
+</section>

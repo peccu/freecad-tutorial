@@ -1,0 +1,121 @@
+<section class="chapter" id="ch-sketch" data-no="3" data-title="スケッチと拘束" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>スケッチと拘束</h1>
+    <p class="lead">立体の元になる2D形状を描く。線を描くことよりも、<span class="term">拘束</span>で寸法と関係を決め、形を確定させることのほうが重要になる。</p>
+  </article>
+
+  <article class="slide" data-title="スケッチを作る">
+    <h2>スケッチを作る</h2>
+    <p>スケッチは平面の上に描く。最初のスケッチは原点の3平面のどれかに置く。</p>
+    <figure class="fig narrow" data-demo="planes">
+      <figcaption>原点の3平面。底面の形は XY、正面から見た形は XZ に描く。</figcaption>
+    </figure>
+    <ol class="steps">
+      <li>Part Design で［ボディを作成］</li>
+      <li>［スケッチを作成］→ 平面の一覧から XY などを選んで <span class="ui">OK</span></li>
+      <li>真上から見た状態でスケッチャーが開く。描き終えたら <span class="ui">閉じる</span></li>
+    </ol>
+    <div class="box point"><p>どの平面に描くかは、完成形の「いちばん特徴的な断面」で決める。押し出す方向は平面に垂直になる。</p></div>
+  </article>
+
+  <article class="slide" data-title="描画ツール">
+    <h2>描画ツール</h2>
+    <figure class="fig" data-demo="sktools">
+      <figcaption>主な描画ツール。</figcaption>
+    </figure>
+    <dl class="defs">
+      <dt>ポリライン</dt><dd>線と円弧を連続して描ける。クリックしながら <kbd>M</kbd> を押すと線と円弧が切り替わる。</dd>
+      <dt>構築線（コンストラクション）</dt><dd>形状にならない補助線。中心線や基準線に使う。ツールバーの切り替えボタンで、描く線を通常線と構築線で切り替えられる。</dd>
+    </dl>
+    <p>描くときは寸法を気にせず、おおよその形と位置で描く。正確な寸法は次の拘束で入れる。</p>
+  </article>
+
+  <article class="slide" data-title="拘束と自由度">
+    <h2>拘束と自由度</h2>
+    <p>拘束を入れるたびに、形が動ける余地（自由度）が減る。自由度が 0 になった状態を <span class="term">完全拘束</span> という。ボタンを順に押して確かめる。</p>
+    <figure class="fig" data-demo="constraints">
+      <figcaption>線4本で描いた四角形に拘束を加える。線1本は始点と終点で自由度 4、4本で 16。</figcaption>
+    </figure>
+    <div class="box point"><p>入れる順番は「一致 → 水平・垂直などの幾何拘束 → 寸法 → 原点との位置関係」。寸法を先に入れると、形が大きく崩れたまま固まりやすい。</p></div>
+  </article>
+
+  <article class="slide" data-title="拘束の種類">
+    <h2>拘束の種類</h2>
+    <div class="table-wrap"><table>
+      <tr><th>拘束</th><th>効果</th><th>よく使う場面</th></tr>
+      <tr><th scope="row">一致</th><td>2点を同じ位置にする</td><td>線の端点同士をつなぐ</td></tr>
+      <tr><th scope="row">点を線上に</th><td>点を線・円の上に乗せる</td><td>中心を軸上に置く</td></tr>
+      <tr><th scope="row">水平／垂直</th><td>線を水平・垂直にする</td><td>長方形の辺</td></tr>
+      <tr><th scope="row">平行／直交</th><td>2本の線を平行・直角にする</td><td>斜めの部品</td></tr>
+      <tr><th scope="row">正接</th><td>線と円弧をなめらかにつなぐ</td><td>長穴、角の丸み</td></tr>
+      <tr><th scope="row">等値</th><td>長さや半径をそろえる</td><td>同じ穴を複数</td></tr>
+      <tr><th scope="row">対称</th><td>2点を線（または点）に対して対称にする</td><td>中心振り分けの形</td></tr>
+      <tr><th scope="row">寸法</th><td>距離・半径・直径・角度を数値で決める</td><td>すべての寸法</td></tr>
+      <tr><th scope="row">固定（ブロック）</th><td>要素をその場で固める</td><td>多用は避ける</td></tr>
+    </table></div>
+    <p>1.0 以降は［寸法］ツール1つで、選んだ要素に応じて距離・半径・角度を自動で選ぶ。ショートカットはツールのボタンにポインタを合わせると表示される。</p>
+  </article>
+
+  <article class="slide" data-title="過剰な拘束と矛盾">
+    <h2>過剰な拘束と矛盾</h2>
+    <p>同じことを2回決めたり（冗長）、両立しない条件を入れたり（矛盾）すると、スケッチは解けなくなる。タスクパネルの「ソルバーメッセージ」に原因の拘束が番号付きで表示され、クリックすると選択される。</p>
+    <div class="table-wrap"><table>
+      <tr><th>状態</th><th>例</th><th>直し方</th></tr>
+      <tr><td>冗長</td><td>長方形の4辺すべてに水平・垂直を付け、さらに平行も付けた</td><td>重複した拘束を削除する</td></tr>
+      <tr><td>矛盾</td><td>同じ辺に 40mm と 50mm の寸法を付けた</td><td>片方を削除するか、参照寸法（表示だけ）に切り替える</td></tr>
+    </table></div>
+    <div class="box fail"><p>寸法を入れた瞬間に形が裏返る。値の差が大きいと、ソルバーが別の解（反転した形）を選ぶ。最初の描画を完成形に近い大きさで描き、寸法は少しずつ変える。</p></div>
+  </article>
+
+  <article class="slide" data-title="外部ジオメトリ">
+    <h2>外部ジオメトリ</h2>
+    <p>既にある立体の辺や面をスケッチに取り込み、位置合わせの基準にする機能。取り込んだ線は紫色で表示され、拘束の相手として使える。</p>
+    <div class="box new">
+      <ul>
+        <li>面を選ぶと、その輪郭の辺がまとめて外部ジオメトリとして取り込まれる</li>
+        <li>取り込んだ形状を、参照だけでなく実際の輪郭として使えるようになった</li>
+        <li>スケッチ平面と立体の交線から形状を作れるようになった</li>
+      </ul>
+    </div>
+    <div class="box warn"><p>外部ジオメトリは、参照先の形状を変えると壊れやすい（<a href="#ch-param/5">第5章</a>）。原点や<a href="#ch-partdesign/7">データム平面</a>で位置を決められる場合は、そちらを優先する。</p></div>
+  </article>
+
+  <article class="slide" data-title="作例：キーホルダーのタグ">
+    <h2>作例：キーホルダーのタグ</h2>
+    <figure class="fig" data-demo="keytag">
+      <figcaption>作るタグの寸法。</figcaption>
+    </figure>
+    <ol class="steps progressive">
+      <li>ボディを作り、XY 平面にスケッチを作成</li>
+      <li>長方形を描き、左下の角を原点に一致させる</li>
+      <li>幅 50、高さ 20 の寸法を入れる</li>
+      <li>穴の円を描き、中心を「左辺から 7、下辺から 10」に寸法拘束。直径 5</li>
+      <li>自由度 0（完全拘束）になったことを確認して <span class="ui">閉じる</span></li>
+      <li>［パッド］で長さ 3。角の R4 は第4章のフィレットで付ける</li>
+    </ol>
+    <div class="box point"><p>角の丸みはスケッチで描くこともできるが、立体にしてからフィレットで付けるほうが、後で値を変えやすい。</p></div>
+  </article>
+
+  <article class="slide" data-title="確認問題">
+    <h2>確認問題</h2>
+    <div class="quiz" data-id="sk-1">
+      <p class="q">完全拘束にしておく主な利点はどれか。</p>
+      <div class="opts">
+        <button>印刷時間が短くなる</button>
+        <button data-correct>寸法を変えたときに、形が意図しない方向に崩れない</button>
+        <button>ファイルサイズが小さくなる</button>
+      </div>
+      <p class="explain">自由度が残っていると、別の寸法を変えた拍子に線が動いてしまう。完全拘束は「後から直せるモデル」の前提。</p>
+    </div>
+    <div class="quiz" data-id="sk-2">
+      <p class="q">中心線として使う補助線は、何で描くとよいか。</p>
+      <div class="opts">
+        <button>通常の線で描き、あとで削除する</button>
+        <button data-correct>構築線（コンストラクション）で描く</button>
+        <button>外部ジオメトリで取り込む</button>
+      </div>
+      <p class="explain">構築線は拘束の相手にはなるが、立体の輪郭にはならない。</p>
+    </div>
+  </article>
+</section>

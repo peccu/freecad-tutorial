@@ -1,0 +1,37 @@
+<section class="chapter" id="ch-trouble" data-no="13" data-title="失敗例とトラブル対処" data-part="実践">
+
+  <article class="slide opener" data-title="扉">
+    <h1>失敗例とトラブル対処</h1>
+    <p class="lead">症状から原因と対策を引く。対策は「設計で直す」と「設定で直す」に分けて示す。設計で直せるものは、設計で直すほうが再発しない。</p>
+  </article>
+
+  <article class="slide" data-title="症状から逆引き">
+    <h2>症状から逆引き</h2>
+    <figure class="fig" data-demo="trouble">
+      <figcaption>症状の分類で絞り込める。</figcaption>
+    </figure>
+  </article>
+
+  <article class="slide" data-title="原因の切り分け方">
+    <h2>原因の切り分け方</h2>
+    <ol class="steps">
+      <li><b>再現するか</b>　同じファイル・同じ設定でもう一度印刷する。毎回起きるなら設計か設定、たまに起きるならプレートの汚れや材料の状態を疑う</li>
+      <li><b>どの層で起きたか</b>　プレビューの同じ層を見る。スライスの時点でおかしければ設定か形状、正常なら印刷時の問題</li>
+      <li><b>小さく試す</b>　問題の部分だけをカットツールで切り出して印刷する。数分で結果が出る</li>
+      <li><b>1つずつ変える</b>　変える設定は1回に1つ。結果を記録する</li>
+    </ol>
+    <div class="box point"><p>材料を疑う順番は「湿気」が先。開封から時間がたった PETG・TPU・PLA の糸引きや表面のざらつきは、乾燥（50〜65℃ で数時間。材料の推奨に従う）で改善することが多い。</p></div>
+  </article>
+
+  <article class="slide" data-title="日常の手入れ">
+    <h2>日常の手入れ</h2>
+    <div class="table-wrap"><table>
+      <tr><th>対象</th><th>頻度の目安</th><th>内容</th></tr>
+      <tr><td>ビルドプレート</td><td>数回ごと</td><td>中性洗剤と水で洗い、乾かす。触るのは縁だけ</td></tr>
+      <tr><td>フィラメント</td><td>使うたび</td><td>乾燥剤と一緒に密閉保管。AMS の乾燥剤も交換</td></tr>
+      <tr><td>ノズル周り</td><td>月1回程度</td><td>付着した樹脂を取る。詰まり気味なら機種の手順で清掃</td></tr>
+      <tr><td>ファームウェア・ソフト</td><td>更新通知のたび</td><td>更新内容を読んでから適用する</td></tr>
+    </table></div>
+    <div class="box verify"><p>機種ごとの保守手順は Bambu Lab Wiki にまとまっている。</p></div>
+  </article>
+</section>

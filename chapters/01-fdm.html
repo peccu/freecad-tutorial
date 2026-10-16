@@ -1,0 +1,85 @@
+<section class="chapter" id="ch-fdm" data-no="1" data-title="3Dプリントの基礎知識" data-part="基礎">
+
+  <article class="slide opener" data-title="扉">
+    <h1>3Dプリントの基礎知識</h1>
+    <p class="lead"><span class="term">FDM</span> 方式のプリンタが形を作る仕組みと、そこから生まれる癖。後の章で出てくる「なぜそう設計するのか」の大半は、この章の内容に行き着く。</p>
+  </article>
+
+  <article class="slide" data-title="FDM の仕組み">
+    <h2>FDM の仕組み</h2>
+    <p>糸状の樹脂（フィラメント）をヒーターで溶かし、細いノズルから押し出しながら動かして1層ぶんの線を描く。1層描き終えると、ノズルとプレートの距離を1層ぶん広げ、その上に次の層を重ねる。</p>
+    <figure class="fig" data-demo="fdm">
+      <figcaption>押し出しと積層の模式図。朱色がいま描いている層。</figcaption>
+    </figure>
+    <p>ここから3つの性質が出てくる。</p>
+    <ul>
+      <li>空中には線を置けない。下に何かがないと垂れる（→ <a href="#ch-dfam/3">オーバーハング</a>）</li>
+      <li>層と層の境目は、層の内部より弱い（→ <a href="#ch-fdm/5">強度の異方性</a>）</li>
+      <li>形は「線の太さ」と「層の厚さ」の格子でしか表せない（→ <a href="#ch-fdm/3">次のスライド</a>）</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="レイヤー高さと線幅">
+    <h2>レイヤー高さと線幅</h2>
+    <p>水平方向の細かさは線幅で、垂直方向の細かさは <span class="term">レイヤー高さ</span> で決まる。0.4mm ノズルの場合、線幅はおよそ 0.4〜0.45mm、レイヤー高さは 0.08〜0.28mm が一般的な範囲。</p>
+    <figure class="fig" data-demo="layers">
+      <figcaption>半径 10mm の曲面を層で近似した断面。レイヤー高さを変えると段差の大きさと層数が変わる。</figcaption>
+    </figure>
+    <div class="box point"><p>段差が目立つのは、傾きが緩い面（ほぼ水平に近い曲面）。垂直な壁はレイヤー高さを変えても見た目がほとんど変わらない。</p></div>
+  </article>
+
+  <article class="slide" data-title="寸法の出方">
+    <h2>寸法の出方</h2>
+    <p>印刷物の寸法は、設計値ぴったりにはならない。ずれ方には傾向がある。</p>
+    <figure class="fig" data-demo="holes">
+      <figcaption>穴は小さく、軸は太く仕上がりやすい（誇張して表示）。</figcaption>
+    </figure>
+    <ul>
+      <li>押し出された線は少し横に広がる。外周の線は外側へ、穴の線は穴の内側へはみ出す</li>
+      <li>曲面は多角形で近似されるため、円の穴は辺の内側に平らな部分ができ、さらに小さくなる</li>
+      <li>第1層はプレートに押し付けて潰すため、底面だけ外側にはみ出す（<span class="term">象の足</span>）</li>
+    </ul>
+    <p>ずれ量は機種・材料・設定で変わる。0.1〜0.2mm 程度が目安だが、はめ合いが必要な部品は、試し印刷で実測して決める（<a href="#ch-dfam/6">第6章</a>）。</p>
+  </article>
+
+  <article class="slide" data-title="強度の異方性">
+    <h2>強度の異方性</h2>
+    <p>同じ形でも、どの向きに積んだかで強さが大きく変わる。層の内部は樹脂がつながっているが、層と層の間は「溶けた樹脂を前の層の上に置いただけ」の接合であり、引きはがす方向の力に弱い。</p>
+    <figure class="fig" data-demo="aniso">
+      <figcaption>同じ L 字部品を2つの向きで印刷した場合。左は力が層を引きはがす向きにかかる。</figcaption>
+    </figure>
+    <div class="box point"><p>力がかかる部品は「荷重が層をはがす向きにならないか」を、向きを決める段階で必ず確認する。設計の段階から印刷向きを想定しておくとよい。</p></div>
+  </article>
+
+  <article class="slide" data-title="材料の選び方">
+    <h2>材料の選び方</h2>
+    <p>主なフィラメントの性質を5段階の目安で比べる。行を選ぶと、右のレーダーチャートと温度・用途の表示が切り替わる。</p>
+    <figure class="fig" data-demo="materials">
+      <figcaption>代表的な材料の特性（定性的な目安）。左は一覧、右は選んだ材料の形を他の材料（破線）と重ねたもの。温度範囲は一般的な値で、銘柄ごとの推奨値を優先する。</figcaption>
+    </figure>
+    <div class="box fail"><p>夏の車内やモーターの近くに PLA の部品を置き、柔らかく変形する。PLA は 55℃ 前後で軟化し始める。熱がかかる場所では PETG 以上を選ぶ。</p></div>
+    <p>Bambu Studio にはメーカー別・材料別のフィラメントプリセットがあり、通常はそれを選ぶだけで温度や冷却が設定される。</p>
+  </article>
+
+  <article class="slide" data-title="確認問題">
+    <h2>確認問題</h2>
+    <div class="quiz" data-id="fdm-1">
+      <p class="q">直径 5.0mm で設計した穴に、直径 5.0mm のピンを差したい。印刷後の状態として起こりやすいのはどれか。</p>
+      <div class="opts">
+        <button>ちょうどよくはまる</button>
+        <button data-correct>穴が小さくなり、入らないか、きつい</button>
+        <button>穴が大きくなり、がたつく</button>
+      </div>
+      <p class="explain">穴は小さく、軸は太く仕上がりやすい。はめ合いには必ずすき間（クリアランス）を設ける。</p>
+    </div>
+    <div class="quiz" data-id="fdm-2">
+      <p class="q">棚受けのように、根元に大きな曲げがかかる部品。積層の向きとして望ましいのはどれか。</p>
+      <div class="opts">
+        <button>曲げで層の境目が引きはがされる向き</button>
+        <button data-correct>曲げの力が層の内部（線の方向）にかかる向き</button>
+        <button>向きは強度に関係しない</button>
+      </div>
+      <p class="explain">層間は層内より弱い。荷重が層をはがす方向にかからないよう、印刷向きを選ぶ。</p>
+    </div>
+  </article>
+</section>

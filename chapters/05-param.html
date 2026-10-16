@@ -1,0 +1,99 @@
+<section class="chapter" id="ch-param" data-no="5" data-title="パラメトリック設計" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>パラメトリック設計</h1>
+    <p class="lead">寸法を数値の入った変数として持ち、形状がそれを参照するように作る。「入れる物が 2mm 大きかった」「フタがきつい」といった修正が、値1つの変更で済む。</p>
+  </article>
+
+  <article class="slide" data-title="式を入れる">
+    <h2>式を入れる</h2>
+    <p>寸法の入力欄で <kbd>=</kbd> を押すと式エディタが開く。数値の代わりに、他の寸法や変数を使った式を書ける。式が入った欄には ƒx の印が付く。</p>
+    <figure class="fig" data-demo="expr">
+      <figcaption>式の例。上の2行の値を変えると、下の3行の結果が追従する。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <tr><th>書き方</th><th>意味</th></tr>
+      <tr><td><code>Pad.Length * 2</code></td><td>オブジェクト名.プロパティ名で参照</td></tr>
+      <tr><td><code>&lt;&lt;本体&gt;&gt;.Length</code></td><td>ラベル（ツリー上の表示名）で参照</td></tr>
+      <tr><td><code>Spreadsheet.width</code></td><td>スプレッドシートの別名で参照</td></tr>
+      <tr><td><code>floor(x)</code>, <code>min(a; b)</code></td><td>関数。引数の区切りは <code>;</code>（<code>,</code> も可）</td></tr>
+      <tr><td><code>3 mm + 0.2 mm</code></td><td>単位付きの計算</td></tr>
+    </table></div>
+  </article>
+
+  <article class="slide" data-title="変数の置き場所">
+    <h2>変数の置き場所</h2>
+    <p>部品全体で使う寸法は、1か所にまとめる。置き場所は2つある。</p>
+    <figure class="fig" data-demo="refs">
+      <figcaption>スプレッドシートの変数を、本体とフタの複数のフィーチャが参照する。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <tr><th></th><th><span class="term">スプレッドシート</span></th><th>変数セット（VarSet）</th></tr>
+      <tr><td>作り方</td><td>Spreadsheet ワークベンチで作成し、セルに「別名」を付ける</td><td>ツールバーの［変数セット］で作り、プロパティを追加する</td></tr>
+      <tr><td>見た目</td><td>表。説明や計算をセルに並べられる</td><td>プロパティビューの一覧</td></tr>
+      <tr><td>向いている場面</td><td>変数が多い、説明を書き添えたい</td><td>変数が少なく、手軽に済ませたい</td></tr>
+    </table></div>
+    <div class="box point"><p>変数名は英字で短く、意味が分かる名前にする（<code>width</code>、<code>wall</code>、<code>clr</code>）。スプレッドシートでは、隣のセルに単位と説明を書いておくと半年後の自分が助かる。</p></div>
+  </article>
+
+  <article class="slide" data-title="公差を変数にする">
+    <h2>公差を変数にする</h2>
+    <p>はめ合う部品同士のすき間を <code>clr</code> などの変数1つで管理する。印刷してきつければ値を増やし、緩ければ減らして再出力するだけで済む。</p>
+    <figure class="fig" data-demo="fitgap">
+      <figcaption>本体の壁とフタの爪の断面。片側のすき間を変えたときのはまり具合の目安。</figcaption>
+    </figure>
+    <p>フタの爪の外寸は「本体の内寸 − 2×clr」になる。両側にすき間ができるので、式では2倍することを忘れない。</p>
+  </article>
+
+  <article class="slide" data-title="壊れにくいモデル">
+    <h2>壊れにくいモデル</h2>
+    <p>前の工程を変更すると、面や辺の内部番号が変わることがある。その番号を参照していた後の工程は、別の面を参照してしまう。これが <span class="term">トポロジカルネーミング問題</span>。</p>
+    <figure class="fig" data-demo="tnp">
+      <figcaption>上面に貼り付けたスケッチと、前工程の変更。挙動を切り替えて比べる。</figcaption>
+    </figure>
+    <p>1.0 で大幅に改善されたが、すべての場合に保たれるわけではない。次の作法で、壊れる確率をさらに下げられる。</p>
+    <ul>
+      <li>スケッチは、できるだけ原点の平面かデータム平面に置く</li>
+      <li>位置は外部ジオメトリより、原点からの寸法で決める</li>
+      <li>フィレット・面取りは最後の工程にまとめる</li>
+      <li>修正後は、ツリーにエラー表示がないか、形状が意図通りかを確認する</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="作例：サイズ可変の小物ケース">
+    <h2>作例：サイズ可変の小物ケース</h2>
+    <figure class="fig" data-demo="parambox">
+      <figcaption>変数で寸法を決めた箱とフタ。スライダーで値を変えると全体が追従する。</figcaption>
+    </figure>
+    <ol class="steps progressive">
+      <li>スプレッドシートを作り、A列に名前、B列に値を入れる。B列のセルに別名 <code>width</code> <code>depth</code> <code>height</code> <code>wall</code> <code>clr</code> を付ける</li>
+      <li>本体ボディ：XY 平面に長方形を描き、原点に対して対称に置く。幅・奥行に <code>=Spreadsheet.width</code> などの式</li>
+      <li>パッドの長さに <code>=Spreadsheet.height</code></li>
+      <li>［厚み］で上面を開口に、肉厚 <code>=Spreadsheet.wall</code></li>
+      <li>フタのボディを新しく作る。板のスケッチは本体と同じ式、爪のスケッチは <code>=Spreadsheet.width - 2 * Spreadsheet.wall - 2 * Spreadsheet.clr</code></li>
+      <li>width を 60 → 80 に変えて再計算し、本体とフタが両方追従することを確かめる</li>
+    </ol>
+  </article>
+
+  <article class="slide" data-title="確認問題">
+    <h2>確認問題</h2>
+    <div class="quiz" data-id="pr-1">
+      <p class="q">本体の内寸が 56mm、片側のすき間 clr が 0.2mm のとき、フタの爪の外寸はいくつにするか。</p>
+      <div class="opts">
+        <button>56.2mm</button>
+        <button>55.8mm</button>
+        <button data-correct>55.6mm</button>
+      </div>
+      <p class="explain">すき間は両側にできるので 56 − 2×0.2 = 55.6mm。</p>
+    </div>
+    <div class="quiz" data-id="pr-2">
+      <p class="q">トポロジカルネーミング問題を避けるためのスケッチの置き場所として、もっとも安全なのはどれか。</p>
+      <div class="opts">
+        <button>直前のフィーチャの面</button>
+        <button data-correct>原点の平面か、データム平面</button>
+        <button>フィレットで作った曲面</button>
+      </div>
+      <p class="explain">原点やデータムは形状の変更で番号が変わらない。</p>
+    </div>
+  </article>
+</section>

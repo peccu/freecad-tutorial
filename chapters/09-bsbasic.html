@@ -1,0 +1,80 @@
+<section class="chapter" id="ch-bsbasic" data-no="9" data-title="Bambu Studio の基本" data-part="Bambu Studio で印刷する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>Bambu Studio の基本</h1>
+    <p class="lead">スライサーは、立体を層に切り分け、ノズルが通る経路（G-code）を作るソフト。Bambu Studio はスライスに加えて、プリンタへの送信と監視までを1つの画面で扱う。</p>
+  </article>
+
+  <article class="slide" data-title="画面の構成">
+    <h2>画面の構成</h2>
+    <figure class="fig" data-demo="bsui">
+      <figcaption>［準備］タブの画面（模式図）。番号を選ぶと説明が出る。</figcaption>
+    </figure>
+    <p>作業は左から右へ流れる。左のパネルで「何に・何で・どう印刷するか」を決め、中央で部品を置き、右上のボタンでスライスする。</p>
+    <div class="box verify"><p>ボタンの並びやアイコンは版によって変わる。名称が見当たらないときは、アイコンにポインタを合わせて表示される名前で探す。</p></div>
+  </article>
+
+  <article class="slide" data-title="3つのプリセット">
+    <h2>3つのプリセット</h2>
+    <p>印刷の設定は3つの組（プリセット）に分かれている。それぞれ独立して選び、組み合わせてスライスする。</p>
+    <figure class="fig" data-demo="presets">
+      <figcaption>プリセットの関係。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <tr><th>プリセット</th><th>決めるもの</th><th>変える頻度</th></tr>
+      <tr><td>プリンタ</td><td>機種、ノズル径、プレートの種類</td><td>ノズルやプレートを替えたとき</td></tr>
+      <tr><td>フィラメント</td><td>ノズル・ベッド温度、冷却、流量、最大速度</td><td>材料を替えたとき</td></tr>
+      <tr><td><span class="term">プロセスプリセット</span></td><td>レイヤー高さ、壁、インフィル、サポート、速度</td><td>部品ごと</td></tr>
+    </table></div>
+    <div class="box point"><p>最初はプロセスを「0.20mm Standard」、フィラメントを使う銘柄の公式プリセットにする。変えるのは、まず1回印刷してからでよい。</p></div>
+  </article>
+
+  <article class="slide" data-title="読み込みと配置">
+    <h2>読み込みと配置</h2>
+    <p>ファイルはウィンドウへのドラッグ＆ドロップか、［ファイル］→［インポート］で読み込む。</p>
+    <div class="table-wrap"><table>
+      <tr><th>操作</th><th class="num">キー</th><th>使いどころ</th></tr>
+      <tr><td>移動</td><td class="num"><kbd>M</kbd></td><td>位置を数値で指定することもできる</td></tr>
+      <tr><td>回転</td><td class="num"><kbd>R</kbd></td><td>15° 刻みのスナップ。数値入力も可</td></tr>
+      <tr><td>拡大縮小</td><td class="num"><kbd>S</kbd></td><td>寸法を直接入力できる。設計の修正には使わない</td></tr>
+      <tr><td>面に置く</td><td class="num"><kbd>F</kbd></td><td>クリックした面をプレートに向ける。向き決めの基本</td></tr>
+      <tr><td>カット</td><td class="num"><kbd>C</kbd></td><td>平面で切り分ける（<a href="#ch-bsadv/7">第11章</a>）</td></tr>
+      <tr><td>自動配置</td><td class="num"><kbd>A</kbd></td><td>プレート上に重ならないよう並べる</td></tr>
+      <tr><td>自動向き</td><td class="num">—</td><td>ツールバーのボタン。サポートが少ない向きを提案する</td></tr>
+    </table></div>
+    <div class="box warn"><p>視点の数字キーは FreeCAD と割り当てが違う（<kbd>1</kbd> が上面など）。一覧は［ヘルプ］→［キーボードショートカット］で確認できる。</p></div>
+    <div class="box fail"><p>寸法が合わない部品を Bambu Studio の拡大縮小で直し、穴径まで一緒に変わる。寸法の修正は FreeCAD に戻って行う。</p></div>
+  </article>
+
+  <article class="slide" data-title="プレートと部品ごとの設定">
+    <h2>プレートと部品ごとの設定</h2>
+    <figure class="fig" data-demo="plates">
+      <figcaption>1つのプロジェクトに複数のプレートを持てる。</figcaption>
+    </figure>
+    <dl class="defs">
+      <dt><span class="term">プレート</span></dt><dd>1回の印刷単位。プレートごとにスライス・印刷する。素材や設定の違う部品を分けておける。</dd>
+      <dt>グローバルとオブジェクト</dt><dd>プロセスパネルの切り替えで、プレート全体の設定（グローバル）と部品ごとの上書き（オブジェクト）を行き来する。上書きした項目はオブジェクト一覧に表示される。</dd>
+    </dl>
+    <p>プロジェクトは .3mf で保存する。部品・配置・設定がまとめて入るので、同じ部品を後日もう一度印刷するときに便利。</p>
+  </article>
+
+  <article class="slide" data-title="自分用のプリセットを保存する">
+    <h2>自分用のプリセットを保存する</h2>
+    <p>設定を変えると、プリセット名の横に変更ありの印が付く。よく使う組み合わせは名前を付けて保存しておく。</p>
+    <ol class="steps">
+      <li>プロセスの値を変える（例：壁のループ数を 3）</li>
+      <li>プリセット名の横の保存ボタンを押す</li>
+      <li>「0.20mm 壁3」など、違いが分かる名前を付ける</li>
+    </ol>
+    <p>保存したプリセットは「ユーザープリセット」として一覧に並ぶ。Bambu Lab アカウントでログインしていれば、別の PC とも同期される。</p>
+    <div class="quiz" data-id="bs-1">
+      <p class="q">材料を PLA から PETG に替えた。まず変えるべきプリセットはどれか。</p>
+      <div class="opts">
+        <button>プリンタ</button>
+        <button data-correct>フィラメント</button>
+        <button>プロセス</button>
+      </div>
+      <p class="explain">温度や冷却は材料に属する設定で、フィラメントプリセットに入っている。</p>
+    </div>
+  </article>
+</section>

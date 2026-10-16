@@ -1,0 +1,136 @@
+<section class="chapter" id="ch-partdesign" data-no="4" data-title="Part Design で立体を作る" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>Part Design で立体を作る</h1>
+    <p class="lead"><span class="term">ボディ</span>の中に、スケッチと「フィーチャ」を順に積み重ねて形を作る。足す・削る・丸める・並べるの4種類を押さえれば、多くの部品が作れる。</p>
+  </article>
+
+  <article class="slide" data-title="ボディと履歴">
+    <h2>ボディと履歴</h2>
+    <p>モデルツリーの並び順が、そのまま形を作る順番になる。ツリーの行を選ぶと、その時点を Tip（先端）にした形が見える。</p>
+    <figure class="fig" data-demo="history">
+      <figcaption>フィーチャの履歴と Tip。右のツリーの行を選ぶと、その時点の形状に切り替わる。</figcaption>
+    </figure>
+    <ul>
+      <li>途中のフィーチャをダブルクリックすると、その工程の値を直せる。後ろの工程は自動で作り直される</li>
+      <li>新しいフィーチャは Tip の直後に入る。途中に工程を足したいときは、右クリック→［Tip に設定］で先端を移してから作る</li>
+      <li>1つのボディは原則として1つのつながった立体。離れた部品は別のボディにする</li>
+    </ul>
+    <div class="box fail"><p>確認のために Tip を途中へ移し、そのまま新しいフィーチャを追加して、最後の工程が反映されなくなる。作業後は Tip を最後のフィーチャに戻す。</p></div>
+  </article>
+
+  <article class="slide" data-title="形を足すフィーチャ">
+    <h2>形を足すフィーチャ</h2>
+    <figure class="fig" data-demo="addfeat">
+      <figcaption>主な追加系フィーチャ。藍色の線が元になるスケッチ。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <tr><th>フィーチャ</th><th>主な設定</th><th>3Dプリントでの用途例</th></tr>
+      <tr><th scope="row"><span class="term">パッド</span></th><td>長さ、方向、両側対称、指定面まで</td><td>板、箱、ほとんどの部品の土台</td></tr>
+      <tr><th scope="row">回転</th><td>軸、角度</td><td>つまみ、プーリー、花瓶</td></tr>
+      <tr><th scope="row">ロフト</th><td>断面の並び、直線／なめらか</td><td>形の変わるノズル、取っ手</td></tr>
+      <tr><th scope="row">パイプ</th><td>断面、経路、ねじれ</td><td>曲がったパイプ、ハンドル</td></tr>
+      <tr><th scope="row">らせん</th><td>ピッチ、高さ、回数</td><td>ばね、太いねじ</td></tr>
+    </table></div>
+  </article>
+
+  <article class="slide" data-title="形を削るフィーチャと穴">
+    <h2>形を削るフィーチャと穴</h2>
+    <p>追加系のそれぞれに、削る版がある（<span class="term">ポケット</span>、溝、除去ロフト、除去パイプ、除去らせん）。穴だけは専用の［穴］ツールを使うと、ネジの規格から寸法を選べる。</p>
+    <figure class="fig" data-demo="holes2">
+      <figcaption>穴の種類。［穴］ツールで円の中心を選び、種類と規格を指定する。</figcaption>
+    </figure>
+    <div class="box point"><p>M5 以下のねじ山はモデルにしない。きれいに印刷できず、下穴に直接タッピングねじを締めたほうが確実。下穴径の目安は<a href="#ch-dfam/8">第6章</a>。</p></div>
+    <div class="box new"><p>［穴］ツールの画面が整理され、円だけでなく点や円弧の中心からも穴を作れるようになった。テーパーねじなど、ねじの種類も増えた。</p></div>
+  </article>
+
+  <article class="slide" data-title="角と面の仕上げ">
+    <h2>角と面の仕上げ</h2>
+    <figure class="fig" data-demo="finish">
+      <figcaption>仕上げ系フィーチャ（断面）。点線が元の形。</figcaption>
+    </figure>
+    <dl class="defs">
+      <dt>フィレット・面取り</dt><dd>辺を選んでから実行する。複数の辺を <kbd>Ctrl</kbd>+クリックで選べる。</dd>
+      <dt>厚み</dt><dd>開口にする面を選び、肉厚を指定して中空の殻にする。箱やカバーを1工程で作れる。</dd>
+      <dt>抜き勾配</dt><dd>面を傾ける。射出成形向けの機能で、3Dプリントでは使う場面が少ない。</dd>
+    </dl>
+    <div class="box fail"><p>フィレットを早い段階で付け、後の工程で辺の参照が壊れる。丸めや面取りは、形がほぼ決まった最後の工程にまとめる。</p></div>
+  </article>
+
+  <article class="slide" data-title="パターンとミラー">
+    <h2>パターンとミラー</h2>
+    <p>同じ穴や突起を並べるときは、1つだけ作って複写する。</p>
+    <figure class="fig" data-demo="pattern">
+      <figcaption>複写系フィーチャ。元のフィーチャ（実線）から複写（破線）が作られる。</figcaption>
+    </figure>
+    <p>複数の操作を組み合わせるときは［マルチ変換］を使う（例：直線に4個並べ、それをミラーで反対側にも）。個数や間隔は、<a href="#ch-param/2">式</a>で他の寸法と連動させておくと便利。</p>
+  </article>
+
+  <article class="slide" data-title="データムと計測">
+    <h2>データムと計測</h2>
+    <p>データムは、形状の一部ではない基準要素。スケッチを置く場所や、フィーチャの方向の基準に使う。</p>
+    <div class="table-wrap"><table>
+      <tr><th>要素</th><th>用途</th></tr>
+      <tr><td>データム平面</td><td>原点から離れた位置・斜めの位置にスケッチを置く</td></tr>
+      <tr><td>データム線</td><td>回転の軸、パターンの方向</td></tr>
+      <tr><td>データム点</td><td>穴の中心、ロフトの通過点</td></tr>
+      <tr><td>ローカル座標系</td><td>平面・軸・原点をまとめた基準。部品の取り付け位置など</td></tr>
+    </table></div>
+    <div class="box new"><p>データム要素が FreeCAD 本体の機能になり、Part Design 以外のワークベンチでも作れるようになった。Assembly の基準にも使える。見た目も新しくなった。</p></div>
+    <h3>計測</h3>
+    <p>［測定］ツールで、選んだ要素間の距離・角度・半径などを表示する。2つの面を選べば間隔が、円の辺を選べば直径が出る。</p>
+  </article>
+
+  <article class="slide" data-title="1.1 で変わった操作">
+    <h2>1.1 で変わった操作</h2>
+    <div class="box new">
+      <dl class="defs">
+        <dt>透過プレビュー</dt><dd>パッドやポケットの結果が、確定前に半透明で表示される。押し出し方向が逆でもすぐ気付ける。</dd>
+        <dt>3Dビュー上での値の調整</dt><dd>多くのツールで、長さなどを 3Dビューのハンドルをドラッグして変えられる。</dd>
+        <dt>1ボディ内の複数ソリッド</dt><dd>試験的扱いだった「離れた複数の立体を持つボディ」が正式機能になった。</dd>
+        <dt>変換（Transform）ツール</dt><dd>数値で正確に移動・回転できる。回転の中心を、原点・重心・指定点から選べる。</dd>
+        <dt>選択の明確化</dt><dd>重なった要素の中から、ポインタ付近の候補を一覧して選べる。奥の要素は一時的に透明になる。</dd>
+      </dl>
+    </div>
+    <div class="box verify"><p>機能名は日本語訳で異なる場合がある。詳しくは FreeCAD wiki の「Release notes 1.1」を参照。</p></div>
+  </article>
+
+  <article class="slide" data-title="作例：ケーブルクリップ">
+    <h2>作例：ケーブルクリップ</h2>
+    <figure class="fig" data-demo="clip">
+      <figcaption>机の裏にねじで留める、φ6 ケーブル用のクリップ。</figcaption>
+    </figure>
+    <ol class="steps progressive">
+      <li>ボディを作り、<b>XZ 平面</b>にスケッチ（正面の形を描く）</li>
+      <li>土台の長方形 40×3 を描き、下辺の中点を原点に置く</li>
+      <li>輪の外径 φ10、内径 φ6.4 の同心円を描き、上部を開口幅 4.6 でカットした形にする</li>
+      <li>土台と輪を重ねて1つの閉じた輪郭にする（トリムで不要部分を消す）</li>
+      <li>［パッド］で長さ 10、両側対称</li>
+      <li>土台の上面にスケッチを置き、ねじ穴の位置を描いて［穴］で M3 皿穴</li>
+      <li>輪の開口の角に R0.8 のフィレット。ケーブルが入りやすくなる</li>
+    </ol>
+    <p>印刷向き：側面（XZ の面）を下にして寝かせる。輪のしなりが層に沿い、開口部が割れにくい。</p>
+  </article>
+
+  <article class="slide" data-title="確認問題">
+    <h2>確認問題</h2>
+    <div class="quiz" data-id="pd-1">
+      <p class="q">ツリーの途中に新しいポケットを追加したい。正しい手順はどれか。</p>
+      <div class="opts">
+        <button>最後のフィーチャを選んでからポケットを作る</button>
+        <button data-correct>追加したい位置のフィーチャを Tip に設定してからポケットを作る</button>
+        <button>新しいボディを作ってポケットを作る</button>
+      </div>
+      <p class="explain">新しいフィーチャは Tip の直後に挿入される。作業後は Tip を最後に戻す。</p>
+    </div>
+    <div class="quiz" data-id="pd-2">
+      <p class="q">フィレットを入れる時期として望ましいのはどれか。</p>
+      <div class="opts">
+        <button>最初のパッドの直後</button>
+        <button data-correct>形がほぼ決まった最後の工程</button>
+        <button>スケッチの中で描く以外に方法はない</button>
+      </div>
+      <p class="explain">フィレットは辺を参照する。前の工程が変わると参照先が変わり、壊れやすい。</p>
+    </div>
+  </article>
+</section>

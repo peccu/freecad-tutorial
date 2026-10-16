@@ -1,0 +1,100 @@
+<section class="chapter" id="ch-bsadv" data-no="11" data-title="Bambu Studio の応用機能" data-part="Bambu Studio で印刷する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>Bambu Studio の応用機能</h1>
+    <p class="lead">部品の一部だけ設定を変える、途中で止めて物を埋め込む、色を分ける、切り分ける。設計を変えずに印刷結果を調整できる機能群。</p>
+  </article>
+
+  <article class="slide" data-title="部品・高さの範囲で設定を変える">
+    <h2>部品・高さの範囲で設定を変える</h2>
+    <p>設定の上書きには3つの粒度がある。</p>
+    <div class="table-wrap"><table>
+      <tr><th>粒度</th><th>操作</th><th>例</th></tr>
+      <tr><td>部品ごと</td><td>オブジェクト一覧で部品を右クリック→ 設定を追加</td><td>ねじ止めする部品だけ壁4周</td></tr>
+      <tr><td>高さの範囲ごと</td><td>部品を右クリック→［高さ範囲モディファイア］</td><td>上部の文字部分だけレイヤー 0.12mm</td></tr>
+      <tr><td>空間の範囲ごと</td><td>部品を右クリック→［モディファイアを追加］（次のスライド）</td><td>ねじ穴の周りだけインフィル 60%</td></tr>
+    </table></div>
+    <p>上書きした項目は、オブジェクト一覧の部品の下に表示される。削除すればグローバルの設定に戻る。</p>
+  </article>
+
+  <article class="slide" data-title="ペイント機能">
+    <h2>ペイント機能</h2>
+    <p>部品の表面をブラシで塗り、場所を指定する機能。範囲はブラシの大きさや「スマート塗りつぶし」（同じ面をまとめて選ぶ）で調整する。</p>
+    <div class="table-wrap"><table>
+      <tr><th>ペイント</th><th class="num">キー</th><th>用途</th></tr>
+      <tr><td>サポートペイント</td><td class="num"><kbd>L</kbd></td><td>サポートを強制する面・禁止する面を塗る</td></tr>
+      <tr><td>シームペイント</td><td class="num"><kbd>P</kbd></td><td>継ぎ目を置く位置・置かない位置を塗る</td></tr>
+      <tr><td>カラーペイント</td><td class="num"><kbd>N</kbd></td><td>面ごとにフィラメント（色）を割り当てる</td></tr>
+    </table></div>
+    <div class="box point"><p>自動サポートを使いながら、穴の内側など不要な場所だけ「禁止」で塗るのが実用的な組み合わせ。</p></div>
+  </article>
+
+  <article class="slide" data-title="モディファイア">
+    <h2>モディファイア</h2>
+    <p><span class="term">モディファイア</span>は、部品に重ねて置く見えない補助形状。重なった範囲にだけ別の設定を適用する。</p>
+    <figure class="fig" data-demo="modifier">
+      <figcaption>ねじ穴の周りに円柱のモディファイアを置き、その範囲だけインフィルを密にする（上から見た1層）。</figcaption>
+    </figure>
+    <dl class="defs">
+      <dt>モディファイア</dt><dd>範囲内の設定を変える。インフィル密度、壁の数など。</dd>
+      <dt>ネガティブパーツ</dt><dd>範囲内を削り取る。設計を変えずに穴を開けたいとき。</dd>
+      <dt>サポートブロッカー／エンフォーサー</dt><dd>範囲内のサポートを禁止／強制する。ペイントより広い範囲を一度に指定できる。</dd>
+    </dl>
+  </article>
+
+  <article class="slide" data-title="一時停止と部品の埋め込み">
+    <h2>一時停止と部品の埋め込み</h2>
+    <p>指定した層で印刷を止め、ナットや磁石を入れてから再開する。中に入れた部品は、上の層で覆われて抜けなくなる。</p>
+    <figure class="fig" data-demo="pause">
+      <figcaption>ナットの埋め込み。六角穴の上端の層で止める。</figcaption>
+    </figure>
+    <ol class="steps progressive">
+      <li>FreeCAD で、ナットの入る穴を上が閉じた空洞として設計する（上に 1mm 以上の天井）</li>
+      <li>スライス後、［プレビュー］タブの層スライダーを空洞の上端の層に合わせる</li>
+      <li>スライダーの「＋」を右クリック→［一時停止を追加］</li>
+      <li>印刷が止まったらナットを入れる。頭が空洞から出ていないことを確認して再開</li>
+    </ol>
+    <div class="box new"><p>Bambu Studio 2.8 では、一時停止の位置が印刷の進行バーに表示され、次の停止までの時間を確認できる（対応ファームウェアが必要）。</p></div>
+    <div class="box warn"><p>ナットの上面が層の高さより出ていると、再開直後にノズルがぶつかる。空洞の深さはナットの厚さ＋0.2mm 以上にする。</p></div>
+  </article>
+
+  <article class="slide" data-title="マルチカラーと AMS">
+    <h2>マルチカラーと AMS</h2>
+    <p><span class="term">AMS</span> を使うと、層の途中でフィラメントを自動で切り替えられる。</p>
+    <figure class="fig" data-demo="ams">
+      <figcaption>色替えの流れ。切り替えのたびに、ノズル内の旧色を排出（フラッシュ）する。</figcaption>
+    </figure>
+    <ul>
+      <li>色の割り当て：部品ごと、カラーペイント、層の高さで切り替え（層スライダーで色替えを追加）</li>
+      <li>色替えの回数が多いほど、排出量と時間が増える。色の境目が少ない設計にすると効率がよい</li>
+      <li>プライムタワーは、色替え後の吐出を安定させるための塔。プレートの空いた場所に置く</li>
+      <li>AMS を使わなくても、層の高さで一時停止して手で入れ替える方法で2色印刷はできる</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="カットとコネクタ">
+    <h2>カットとコネクタ</h2>
+    <p>カットツール（<kbd>C</kbd>）で部品を平面で切り分ける。切断面にコネクタ（差し込みピンやダボ）を自動で付けられる。</p>
+    <ol class="steps">
+      <li>部品を選んで <kbd>C</kbd>。切断面の位置と傾きをドラッグか数値で決める</li>
+      <li>コネクタの種類（プラグ・ダボ）と形状・大きさ・すき間を選び、切断面に配置する</li>
+      <li><span class="ui">カットを実行</span>。分かれた部品は、それぞれ切断面を下にして配置できる</li>
+    </ol>
+    <p>形が単純で、分割位置が後から変わらない場合に向く。強度や位置精度が必要な分割は、FreeCAD 側で設計する（<a href="#ch-dfam/10">第6章</a>）。</p>
+  </article>
+
+  <article class="slide" data-title="可変レイヤー高さ">
+    <h2>可変レイヤー高さ</h2>
+    <p>部品を選んでツールバーの［可変レイヤー高さ］を開くと、高さ方向にレイヤーの厚さの分布を編集できる。［適応］を押すと、傾きの緩い曲面だけ細かく、垂直な壁は粗くした分布が自動で作られる。</p>
+    <p>ドーム状の上面を持つ部品や、フィギュアなど曲面の多い部品で、時間をあまり延ばさずに段差を減らせる。</p>
+    <div class="quiz" data-id="adv-1">
+      <p class="q">設計を変えずに、ねじ穴の周りだけを丈夫にしたい。適した方法はどれか。</p>
+      <div class="opts">
+        <button>全体のインフィルを 60% にする</button>
+        <button data-correct>ねじ穴の周りに円柱のモディファイアを置き、インフィルを上げる</button>
+        <button>ねじ穴の周りをカットする</button>
+      </div>
+      <p class="explain">モディファイアは重なった範囲だけ設定を変える。全体を変えるより時間と材料が少ない。</p>
+    </div>
+  </article>
+</section>

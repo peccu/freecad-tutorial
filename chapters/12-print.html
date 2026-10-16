@@ -1,0 +1,76 @@
+<section class="chapter" id="ch-print" data-no="12" data-title="プレビュー確認と印刷" data-part="Bambu Studio で印刷する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>プレビュー確認と印刷</h1>
+    <p class="lead">スライス結果を層ごとに確かめてから送信する。失敗の多くは、送信前のプレビューで見つけられる。</p>
+  </article>
+
+  <article class="slide" data-title="プレビューの読み方">
+    <h2>プレビューの読み方</h2>
+    <p>スライスすると［プレビュー］タブに切り替わる。右端の層スライダーで、下から1層ずつ確かめられる。</p>
+    <figure class="fig" data-demo="slice">
+      <figcaption>小物ケースの本体を層ごとに表示した例。スライダーで表示する層を変える。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <tr><th>見るところ</th><th>確認する内容</th></tr>
+      <tr><td>第1層</td><td>接地面が十分にあるか。細い部分だけで立っていないか</td></tr>
+      <tr><td>オーバーハングの直下の層</td><td>空中に浮いた線がないか（サポート漏れ）</td></tr>
+      <tr><td>上面の数層</td><td>穴やすき間が埋まっているか</td></tr>
+      <tr><td>線の種類の色分け</td><td>外壁・内壁・インフィル・サポートが意図通りか（凡例で表示を切り替え）</td></tr>
+      <tr><td>右下の集計</td><td>印刷時間、フィラメント使用量</td></tr>
+    </table></div>
+    <p>下端の横スライダーは、1層の中でノズルが動く順番を再生する。</p>
+  </article>
+
+  <article class="slide" data-title="印刷前チェック">
+    <h2>印刷前チェック</h2>
+    <p>送信の直前に毎回確認する項目。印刷が終わったら「チェックを外す」で戻す。</p>
+    <ul class="checklist" data-key="preprint" data-reset>
+      <li>プリンタ・ノズル径・プレートの種類が実機と一致している</li>
+      <li>フィラメントのプリセットが、装填中の材料と一致している</li>
+      <li>部品の向きは意図通り（強度・見た目・サポート量）</li>
+      <li>プレビューで、第1層の接地面が十分にある</li>
+      <li>プレビューで、空中に浮いた線がない</li>
+      <li>印刷時間・使用量が想定内で、フィラメントの残量が足りる</li>
+      <li>プレートが清潔で、異物が載っていない</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="送信する">
+    <h2>送信する</h2>
+    <figure class="fig" data-demo="send">
+      <figcaption>印刷データの送り方。</figcaption>
+    </figure>
+    <ol class="steps">
+      <li>［プレートを印刷］で送信画面を開き、送り先のプリンタを選ぶ</li>
+      <li>オプションを確認する：ベッドレベリング、フローダイナミクスの較正、タイムラプス</li>
+      <li>AMS を使う場合、プレート上のフィラメントと AMS のスロットの対応を確認する</li>
+      <li><span class="ui">送信</span>。印刷が始まると［デバイス］タブで状況を見られる</li>
+    </ol>
+    <div class="box verify"><p>オプションの名前と既定値は機種によって異なる。ベッドレベリングは、プレートを替えた後や久しぶりの印刷では有効にしておく。</p></div>
+  </article>
+
+  <article class="slide" data-title="印刷中の監視">
+    <h2>印刷中の監視</h2>
+    <p>失敗の半分は第1層で決まる。最初の数分だけは、カメラか目視で見届ける。</p>
+    <div class="table-wrap"><table>
+      <tr><th>見るタイミング</th><th>異常のサイン</th><th>対応</th></tr>
+      <tr><td>第1層</td><td>線が丸いまま転がる、角がめくれる、線同士の間にすき間</td><td>停止して<a href="#ch-trouble">第13章</a>へ</td></tr>
+      <tr><td>序盤</td><td>部品がプレート上で動く、ブリムが浮く</td><td>停止。プレート洗浄、ブリムを広げる</td></tr>
+      <tr><td>オーバーハング部</td><td>線が垂れて糸の塊になる</td><td>軽微なら続行。ひどければ停止して設計か設定を見直す</td></tr>
+      <tr><td>終盤</td><td>ノズルが部品にぶつかる音</td><td>反りの可能性。停止して確認</td></tr>
+    </table></div>
+  </article>
+
+  <article class="slide" data-title="取り外しと後処理">
+    <h2>取り外しと後処理</h2>
+    <ul>
+      <li>プレートは十分に冷めてから外す。PEI プレートは軽く曲げると外れる</li>
+      <li>サポートはラジオペンチとニッパーで外す。界面に沿ってひねるように</li>
+      <li>バリや糸はデバーリングツールかカッターで取る。熱をかけすぎない</li>
+      <li>ヒートセットインサートは、はんだごてで垂直に押し込む。深く入れすぎない</li>
+      <li>寸法をノギスで測り、FreeCAD の変数を修正する。結果はメモに残す</li>
+    </ul>
+    <div class="box point"><p>「何を変えて、どうなったか」を、部品名・材料・設定・結果の4点で記録しておくと、2回目以降の試行が大きく減る。</p></div>
+  </article>
+</section>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FreeCAD × Bambu Studio 3Dプリント入門</title>
+<meta name="description" content="FreeCAD 1.1 で設計し、Bambu Studio でスライスして3Dプリントするまでの機能と概念をまとめた図解テキスト。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&family=Noto+Serif+JP:wght@600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Cpath d=%22M4 26h24M7 21h18M10 16h12M13 11h6%22 stroke=%22%23b9442b%22 stroke-width=%223%22 stroke-linecap=%22round%22/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body class="mode-slide">
+
+<header class="app-header">
+  <button class="tbtn" id="nav-btn" title="目次の開閉 (t)">目次</button>
+  <div class="brand">FreeCAD × Bambu Studio 3Dプリント入門<small class="hide-sm">FreeCAD 1.1 ／ Bambu Studio 2.x</small></div>
+  <button class="tbtn" id="search-btn" title="検索 (/ または ⌘K)">検索</button>
+  <button class="tbtn hide-sm" id="mode-btn" title="スライド／一覧の切替 (d)">一覧表示へ</button>
+  <button class="tbtn hide-sm" id="theme-btn" title="明暗の切替">明暗</button>
+  <button class="tbtn" id="help-btn" title="操作方法 (?)">?</button>
+  <span class="hide-sm" style="font-size:11px;color:var(--faint);min-width:2.8em;text-align:right" id="progress-text">0%</span>
+  <div class="progress-track"><div class="progress-bar" id="progress"></div></div>
+</header>
+
+<nav class="nav" id="nav" aria-label="目次"></nav>
+
+<main class="main" id="content"><p class="fig-loading">読み込み中…</p></main>
+
+<footer class="app-footer">
+  <span class="pager"><button class="btn" id="prev" title="前へ (←)">← 前</button></span>
+  <div class="where" id="where"></div>
+  <span class="pager"><button class="btn" id="next" title="次へ (→)">次 →</button></span>
+</footer>
+
+<div class="modal" id="search-modal" role="dialog" aria-label="検索">
+  <div class="modal-box">
+    <input type="search" id="search-input" placeholder="キーワード（例：サポート　公差　エクスポート）" autocomplete="off" enterkeyhint="go">
+    <ul class="results" id="search-results"></ul>
+  </div>
+</div>
+<div class="modal" id="help-modal" role="dialog" aria-label="操作方法">
+  <div class="modal-box"><div class="body">
+    <h3 style="margin-top:0">操作方法</h3>
+    <div class="table-wrap"><table>
+      <tr><th>操作</th><th>キー／タッチ</th></tr>
+      <tr><td>次／前のスライド</td><td><kbd>→</kbd> <kbd>←</kbd>、左右スワイプ、画面下のボタン</td></tr>
+      <tr><td>検索</td><td><kbd>/</kbd>、<kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>K</kbd></td></tr>
+      <tr><td>スライド表示／一覧表示</td><td><kbd>d</kbd></td></tr>
+      <tr><td>目次の開閉</td><td><kbd>t</kbd></td></tr>
+      <tr><td>閉じる</td><td><kbd>Esc</kbd></td></tr>
+    </table></div>
+    <p style="font-size:13px;color:var(--muted)">既読・チェックリスト・確認問題の結果は、このブラウザにのみ保存される。</p>
+    <p><button class="btn" id="mode-btn-sm" onclick="document.getElementById('mode-btn').click();document.getElementById('help-modal').classList.remove('open')">スライド／一覧を切替</button>
+       <button class="btn" onclick="document.getElementById('theme-btn').click()">明暗を切替</button>
+       <button class="btn" id="reset-btn">記録を消去</button></p>
+  </div></div>
+</div>
+
+<script src="assets/glossary.js"></script>
+<script src="assets/figures.js"></script>
+<script src="assets/figures-b.js"></script>
+<script src="assets/figures-c.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

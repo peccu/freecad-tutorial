@@ -1,0 +1,64 @@
+<section class="chapter" id="ch-intro" data-no="0" data-title="はじめに" data-part="導入">
+
+  <article class="slide opener" data-title="本書について">
+    <div class="ch-label">FreeCAD 1.1 ／ Bambu Studio 2.x</div>
+    <h1>設計して、スライスして、造形する</h1>
+    <p class="lead">欲しい部品を自分で設計し、3Dプリンタで形にするための機能と考え方をまとめた図解テキスト。設計は FreeCAD、スライスと印刷は Bambu Studio を使う。</p>
+    <p><button class="btn" id="resume-btn" hidden></button></p>
+    <p class="tools">対象：3Dプリンタ（FDM方式）を持っている、または使う予定があり、CAD は初めて、または少し触った程度の人。</p>
+  </article>
+
+  <article class="slide" data-title="全体の流れ">
+    <h2>全体の流れ</h2>
+    <p>3Dプリントの作業は6つの工程に分かれる。前半の4工程が FreeCAD、後半の2工程が Bambu Studio。</p>
+    <figure class="fig" data-demo="workflow">
+      <figcaption>設計から印刷までの工程。各工程から該当章へ移動できる。</figcaption>
+    </figure>
+    <p>1回で思い通りの部品ができることは少ない。印刷して、測って、直して、もう一度印刷する。この往復を短くするのが、パラメトリック設計（<a href="#ch-param">第5章</a>）と印刷を意識した設計（<a href="#ch-dfam">第6章</a>）の役割になる。</p>
+  </article>
+
+  <article class="slide" data-title="本書の使い方">
+    <h2>本書の使い方</h2>
+    <div class="table-wrap"><table>
+      <tr><th>やりたいこと</th><th>方法</th></tr>
+      <tr><td>1枚ずつ読み進める</td><td>スライド表示。<kbd>→</kbd> <kbd>←</kbd>、スマートフォンは左右スワイプ</td></tr>
+      <tr><td>全体を見返す・印刷する</td><td>一覧表示（<kbd>d</kbd>、または「?」メニュー）</td></tr>
+      <tr><td>忘れた操作を探す</td><td>検索（<kbd>/</kbd>）。例：「面取り」「しきい値」「エクスポート」</td></tr>
+      <tr><td>症状から対処を探す</td><td><a href="#ch-trouble">第13章 失敗例とトラブル対処</a></td></tr>
+      <tr><td>キー操作・数値の目安を見る</td><td><a href="#ch-appendix">付録</a></td></tr>
+    </table></div>
+    <p>点線の下線がある語（例：<span class="term">オーバーハング</span>）は、ポイントまたはタップで説明が出る。読んだスライドは目次に印が付き、次回は表紙から続きを開ける。記録はこのブラウザ内にだけ残る。</p>
+    <h3>囲みの種類</h3>
+    <div class="box point"><p>理解の要になる点。</p></div>
+    <div class="box fail"><p>初心者が実際につまずきやすい点と、その避け方。</p></div>
+    <div class="box lost"><p>画面や操作で迷ったときの戻り方。</p></div>
+    <div class="box verify"><p>ソフトの版によって名称や位置が異なる可能性がある箇所。</p></div>
+  </article>
+
+  <article class="slide" data-title="準備するもの">
+    <h2>準備するもの</h2>
+    <ul class="checklist" data-key="setup">
+      <li><b>FreeCAD 1.1</b>　公式サイト（freecad.org）から OS 別のインストーラを入手</li>
+      <li><b>Bambu Studio</b>　公式サイト（bambulab.com）から入手。初回起動時に地域とプリンタ機種を選ぶ</li>
+      <li><b>プリンタとの接続</b>　Bambu Lab アカウントでのクラウド接続、または LAN 専用モード</li>
+      <li><b>PLA フィラメント</b>　最初の1巻はこれ。温度が低く、反りにくい</li>
+      <li><b>ノギス</b>　デジタル式が読みやすい。寸法の確認と公差の調整に欠かせない</li>
+      <li><b>ホイール付きマウス</b>　FreeCAD の視点操作は中ボタン（ホイール押し込み）を多用する</li>
+    </ul>
+    <div class="box verify"><p>本書の画面説明は FreeCAD 1.1（2026年3月公開）と Bambu Studio 2.8 系を基準にしている。メニュー名は日本語表示の場合を基本とし、必要に応じて英語名を併記した。</p></div>
+  </article>
+
+  <article class="slide" data-title="作例と進め方">
+    <h2>作例と進め方</h2>
+    <p>章ごとに小さな作例を1つずつ作り、最後に通しの演習を行う。前の作例を使い回すことはないので、どの章からでも始められる。</p>
+    <div class="table-wrap"><table>
+      <tr><th>章</th><th>作例</th><th>主に身につくこと</th></tr>
+      <tr><td>3</td><td>キーホルダーのタグ</td><td>スケッチを完全拘束で描く</td></tr>
+      <tr><td>4</td><td>ケーブルクリップ</td><td>パッド・ポケット・フィレット</td></tr>
+      <tr><td>5</td><td>サイズ可変の小物ケース</td><td>変数で寸法を管理する</td></tr>
+      <tr><td>6</td><td>壁掛けフック</td><td>印刷向きと強度</td></tr>
+      <tr><td>14</td><td>フタ付き小物ケース</td><td>設計から印刷・調整までの一巡</td></tr>
+    </table></div>
+    <p>急ぐなら、第1章 → 第3章 → 第4章 → 第8章 → 第9章 → 第12章 の順で読むと、最短で1つ目の部品を印刷できる。そのあと第6章と第10章に戻ると、失敗が目に見えて減る。</p>
+  </article>
+</section>

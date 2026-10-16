@@ -1,0 +1,102 @@
+<section class="chapter" id="ch-project" data-no="14" data-title="総合演習" data-part="実践">
+
+  <article class="slide opener" data-title="扉">
+    <h1>総合演習：フタ付き小物ケース</h1>
+    <p class="lead">変数で寸法を管理した本体と、はめ込み式のフタを設計し、スライス・印刷・調整までを一巡する。各工程で、どの章の内容を使うかを併記した。</p>
+  </article>
+
+  <article class="slide" data-title="要件と変数表">
+    <h2>要件と変数表</h2>
+    <p>まず入れる物を測る。例として、単三電池 4 本（φ14.5 × 50.5mm）を立てずに並べて入れる箱を作る。</p>
+    <div class="table-wrap"><table>
+      <caption>Spreadsheet に作る変数（単位 mm）</caption>
+      <tr><th>別名</th><th class="num">値</th><th>決め方</th></tr>
+      <tr><td><code>inW</code></td><td class="num">60</td><td>電池 4 本の幅 58 ＋ 余裕 2</td></tr>
+      <tr><td><code>inD</code></td><td class="num">53</td><td>電池の長さ 50.5 ＋ 余裕 2.5</td></tr>
+      <tr><td><code>inH</code></td><td class="num">16</td><td>電池の径 14.5 ＋ 余裕 1.5</td></tr>
+      <tr><td><code>wall</code></td><td class="num">1.6</td><td>線幅 0.42 の約4本ぶん</td></tr>
+      <tr><td><code>floor</code></td><td class="num">1.2</td><td>0.2mm で 6 層</td></tr>
+      <tr><td><code>clr</code></td><td class="num">0.2</td><td>手で着脱（後でテストピースの結果に置き換える）</td></tr>
+      <tr><td><code>lipH</code></td><td class="num">4</td><td>フタの爪の深さ</td></tr>
+    </table></div>
+    <p>外寸は式で求める：<code>width = inW + 2 * wall</code>、<code>depth = inD + 2 * wall</code>、<code>height = inH + floor</code>。内寸を基準にすると、入れる物が変わったときに直す値が少ない。</p>
+  </article>
+
+  <article class="slide" data-title="本体を作る">
+    <h2>本体を作る</h2>
+    <figure class="fig" data-demo="casesec">
+      <figcaption>本体とフタの断面と変数の対応。</figcaption>
+    </figure>
+    <ol class="steps progressive">
+      <li>ボディを作り、XY 平面にスケッチ。長方形を原点に対して対称に描き、幅 <code>=Spreadsheet.width</code>、奥行 <code>=Spreadsheet.depth</code> の式を入れる（<a href="#ch-sketch/4">3章</a>、<a href="#ch-param/2">5章</a>）</li>
+      <li>パッドで高さ <code>=Spreadsheet.height</code>（<a href="#ch-partdesign/3">4章</a>）</li>
+      <li>［厚み］で上面を開口に、肉厚 <code>=Spreadsheet.wall</code>。底の厚さは厚みと同じになるので、<code>floor</code> を別に効かせたい場合は、厚みの代わりに上面からポケットで掘る</li>
+      <li>外側の縦の辺に R3 のフィレット、底面の外周に C0.5 の面取り（<a href="#ch-dfam/7">6章</a>）</li>
+    </ol>
+  </article>
+
+  <article class="slide" data-title="フタを作る">
+    <h2>フタを作る</h2>
+    <ol class="steps progressive">
+      <li>2つ目のボディを作り、アクティブにする（<a href="#ch-assembly/2">7章</a>）</li>
+      <li>天板：XY 平面のスケッチに本体と同じ外形。パッドで厚さ <code>=Spreadsheet.wall</code></li>
+      <li>爪：天板の下に、外寸 <code>=Spreadsheet.inW - 2 * Spreadsheet.clr</code> の輪郭を描き、深さ <code>=Spreadsheet.lipH</code> で下向きにパッド。中を［厚み］かポケットで抜き、肉厚 1.2</li>
+      <li>フタを本体の上に配置して、［共通部分］で干渉がないことを確認する（<a href="#ch-assembly/4">7章</a>）</li>
+      <li>指をかける切り欠きを天板の縁にポケットで作る</li>
+    </ol>
+    <div class="box point"><p>爪の外寸の式は「内寸 − 2×clr」。この1行が正しければ、clr を変えるだけで硬さを調整できる。</p></div>
+  </article>
+
+  <article class="slide" data-title="すき間を実測で決める">
+    <h2>すき間を実測で決める</h2>
+    <p>本番の前に、すき間だけを確かめる小さな試験片を印刷する。10分程度で終わる。</p>
+    <figure class="fig narrow" data-demo="testpiece">
+      <figcaption>すき間テストピース。軸と穴を別々に印刷し、どの穴に気持ちよくはまるかを見る。</figcaption>
+    </figure>
+    <ul>
+      <li>本番と同じ材料・同じ向き（穴が縦になる向き）・同じプロセスで印刷する</li>
+      <li>「手で抜き差しでき、逆さにしても落ちない」穴の値を <code>clr</code> に入れる</li>
+      <li>結果は機種・材料ごとに記録しておく。次の部品からはテストを省ける</li>
+    </ul>
+  </article>
+
+  <article class="slide" data-title="書き出しとスライス">
+    <h2>書き出しとスライス</h2>
+    <ol class="steps">
+      <li>本体とフタのボディを選び、3MF で書き出す（<a href="#ch-export/4">8章</a>）</li>
+      <li>Bambu Studio に読み込む。フタは天板を下にするよう <kbd>F</kbd> で上面をクリック（<a href="#ch-bsbasic/4">9章</a>）</li>
+      <li>プロセス「0.20mm Standard」、壁 2、インフィル 15%。サポートは不要のはず</li>
+      <li>スライスしてプレビューを確認：底面の層、爪の付け根、フィレット部（<a href="#ch-print/2">12章</a>）</li>
+    </ol>
+    <div class="box lost"><p>プレビューでサポートが付いていたら、どこかに 45° を超える面がある。底面の面取りを入れ忘れていないか、フタが裏返っているかを確認する。</p></div>
+  </article>
+
+  <article class="slide" data-title="印刷と調整">
+    <h2>印刷と調整</h2>
+    <figure class="fig" data-demo="parambox">
+      <figcaption>変数を変えたときの形の変化。実物との比較に使う。</figcaption>
+    </figure>
+    <div class="table-wrap"><table>
+      <tr><th>結果</th><th>直す変数・設定</th></tr>
+      <tr><td>フタがきつい</td><td><code>clr</code> を 0.05 増やす</td></tr>
+      <tr><td>フタが緩く、逆さにすると落ちる</td><td><code>clr</code> を 0.05 減らす</td></tr>
+      <tr><td>電池が入らない</td><td><code>inW</code> などの余裕を増やす</td></tr>
+      <tr><td>角が反って底がガタつく</td><td>ブリムを付ける、外側の角の R を大きく</td></tr>
+      <tr><td>壁が薄く感じる</td><td><code>wall</code> を 2.0 に（線5本ぶん）</td></tr>
+    </table></div>
+    <p>変数を直したら再計算し、書き出し → スライス → 印刷を繰り返す。2回目で満足のいく仕上がりになれば十分に良い結果。</p>
+  </article>
+
+  <article class="slide" data-title="振り返り">
+    <h2>振り返り</h2>
+    <p>この演習で使った考え方を、次の部品にも当てはめる。</p>
+    <ul class="checklist" data-key="project-review">
+      <li>寸法は内寸などの「要求」から決め、外寸は式で求めた</li>
+      <li>はめ合いのすき間を1つの変数で管理した</li>
+      <li>すき間は試験片で実測して決めた</li>
+      <li>印刷向きを設計の段階で決め、サポートが要らない形にした</li>
+      <li>変更は1回に1つにして、結果を記録した</li>
+    </ul>
+    <p>次に作る部品を決めたら、<a href="#ch-dfam/11">設計レビュー</a>と<a href="#ch-print/3">印刷前チェック</a>を手元に開いておく。</p>
+  </article>
+</section>

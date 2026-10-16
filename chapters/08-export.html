@@ -1,0 +1,71 @@
+<section class="chapter" id="ch-export" data-no="8" data-title="書き出し" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>書き出し</h1>
+    <p class="lead">FreeCAD の形状をスライサーへ渡す。形式によって中身が違い、曲面の精度やファイルの扱いやすさが変わる。</p>
+  </article>
+
+  <article class="slide" data-title="形式の選び方">
+    <h2>形式の選び方</h2>
+    <div class="table-wrap"><table>
+      <tr><th>形式</th><th>中身</th><th>単位</th><th>使う場面</th></tr>
+      <tr><th scope="row"><span class="term">STEP</span></th><td>正確な曲面（B-rep）</td><td>持つ</td><td>Bambu Studio 側で曲面の細かさを決めたい。他の CAD にも渡したい</td></tr>
+      <tr><th scope="row"><span class="term">3MF</span></th><td>三角形メッシュ＋色・複数部品</td><td>持つ</td><td>複数の部品をまとめて渡したい</td></tr>
+      <tr><th scope="row"><span class="term">STL</span></th><td>三角形メッシュのみ</td><td>持たない</td><td>どのスライサーでも読める。もっとも単純</td></tr>
+    </table></div>
+    <p>迷ったら 3MF。単位を持つので、大きさの取り違えが起きない。曲面の多い部品で仕上がりにこだわるなら STEP も試す価値がある。</p>
+    <div class="box warn"><p>STL には単位がない。Bambu Studio は mm として読むため、インチで作られた STL は極端に小さく表示される（読み込み時に変換を提案される）。</p></div>
+  </article>
+
+  <article class="slide" data-title="メッシュの細かさ">
+    <h2>メッシュの細かさ</h2>
+    <p>STL・3MF では、曲面が細かい平面（三角形）の集まりに置き換えられる。元の曲面からのずれ（偏差）の上限で細かさが決まる。</p>
+    <figure class="fig" data-demo="tess">
+      <figcaption>偏差と円周の分割数。小さくするほど元の円に近づくが、ファイルは大きくなる。</figcaption>
+    </figure>
+    <p>3Dプリントでは偏差 0.01〜0.05mm 程度で十分。プリンタの線幅（0.4mm 前後）より十分小さければ、それ以上細かくしても印刷結果は変わらない。</p>
+    <div class="box verify"><p>FreeCAD での設定場所：［設定］→［インポート/エクスポート］→［メッシュ形式］の「最大メッシュ偏差」。Mesh Design ワークベンチの［形状からメッシュを作成］を使うと、書き出しごとに偏差を指定できる。</p></div>
+  </article>
+
+  <article class="slide" data-title="書き出しの手順">
+    <h2>書き出しの手順</h2>
+    <div class="tabs">
+      <div class="tab" data-label="3MF・STL">
+        <ol class="steps progressive">
+          <li>モデルツリーで<b>ボディ</b>を選ぶ（中のフィーチャではない）。複数部品なら <kbd>Ctrl</kbd>+クリックで追加</li>
+          <li>［ファイル］→［エクスポート］（<kbd>Ctrl</kbd>+<kbd>E</kbd>）</li>
+          <li>ファイルの種類で「3D Manufacturing Format (*.3mf)」または「STL Mesh (*.stl)」を選ぶ</li>
+          <li>ファイル名を付けて保存する</li>
+        </ol>
+      </div>
+      <div class="tab" data-label="STEP">
+        <ol class="steps progressive">
+          <li>ボディを選ぶ</li>
+          <li>［ファイル］→［エクスポート］で「STEP (*.step *.stp)」を選んで保存</li>
+          <li>Bambu Studio で読み込むと、メッシュ化の細かさ（線形・角度の偏差）を指定する画面が出る</li>
+        </ol>
+      </div>
+    </div>
+    <div class="box lost"><p>スライサーで形の一部が欠けている → 書き出したのがボディではなく、途中のフィーチャだった可能性が高い。ボディを選び直して書き出す。</p></div>
+  </article>
+
+  <article class="slide" data-title="書き出したあとの確認">
+    <h2>書き出したあとの確認</h2>
+    <p>メッシュに穴や裏返った面があると、スライスが乱れることがある。Part Design で作った正常なボディなら、ほぼ起きない。</p>
+    <div class="table-wrap"><table>
+      <tr><th>確認方法</th><th>見るところ</th></tr>
+      <tr><td>Bambu Studio に読み込む</td><td>読み込み時の修復メッセージ、オブジェクト一覧の警告マーク</td></tr>
+      <tr><td>FreeCAD の Mesh Design</td><td>［メッシュ］→［解析］→［評価と修復］で、穴・重複・裏返りを検査</td></tr>
+      <tr><td>FreeCAD の Part ワークベンチ</td><td>書き出す前に、ボディを選んで［パート］→［ジオメトリをチェック］</td></tr>
+    </table></div>
+    <div class="quiz" data-id="ex-1">
+      <p class="q">形状の大きさを取り違えにくい書き出し形式はどれか。</p>
+      <div class="opts">
+        <button>STL</button>
+        <button data-correct>3MF</button>
+        <button>どれも同じ</button>
+      </div>
+      <p class="explain">3MF と STEP は単位を持つ。STL は数値だけなので、読み込み側の解釈に依存する。</p>
+    </div>
+  </article>
+</section>

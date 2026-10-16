@@ -1,0 +1,61 @@
+<section class="chapter" id="ch-assembly" data-no="7" data-title="複数部品とアセンブリ" data-part="FreeCAD で設計する">
+
+  <article class="slide opener" data-title="扉">
+    <h1>複数部品とアセンブリ</h1>
+    <p class="lead">本体とフタ、軸と軸受けのように、組み合わせて使う部品を扱う。寸法を共有し、組んだ状態で干渉を確かめ、印刷用には別々に並べ直す。</p>
+  </article>
+
+  <article class="slide" data-title="1ファイルに複数のボディ">
+    <h2>1ファイルに複数のボディ</h2>
+    <p>組み合わせる部品が2〜3個なら、1つの .FCStd に複数のボディを作るのが手軽。同じスプレッドシートを参照でき、寸法の食い違いが起きにくい。</p>
+    <ol class="steps">
+      <li>1つ目のボディで本体を作る</li>
+      <li>［ボディを作成］で2つ目のボディを作る。新しいボディが「アクティブ」（太字表示）になる</li>
+      <li>アクティブなボディにだけフィーチャが追加される。切り替えはボディをダブルクリック</li>
+      <li>組んだ位置に置きたい場合は、ボディの配置（Placement）で移動する</li>
+    </ol>
+    <div class="box fail"><p>フタを作るつもりで本体のボディがアクティブのまま作業し、本体にフタの形が足される。作業前にツリーで太字のボディを確認する。</p></div>
+    <div class="box new"><p>1つのボディ内に、離れた複数の立体を持てるようになった。ただし、別々に印刷・管理する部品はボディを分けたほうが扱いやすい。</p></div>
+  </article>
+
+  <article class="slide" data-title="Assembly ワークベンチ">
+    <h2>Assembly ワークベンチ</h2>
+    <p>部品が多い、別ファイルの部品を組みたい、動きを確かめたい、という場合は Assembly ワークベンチを使う。部品同士を「ジョイント」で結び付ける。</p>
+    <figure class="fig" data-demo="joints">
+      <figcaption>代表的なジョイント。ほかに距離・平行・角度、ギアやベルトなどがある。</figcaption>
+    </figure>
+    <ol class="steps progressive">
+      <li>［アセンブリを作成］</li>
+      <li>［コンポーネントを挿入］で部品を追加する（開いている文書から選べる）</li>
+      <li>基準になる部品を1つ選び［接地］で固定する</li>
+      <li>2つの部品の面・辺・点を1つずつ選び、ジョイントの種類を選ぶ</li>
+      <li>回転・スライダーのジョイントは、部品をドラッグすると動きを確かめられる</li>
+    </ol>
+    <div class="box new"><p>動きのアニメーションを作るツールが加わった。ヒンジの開閉範囲などを確認しやすい。</p></div>
+  </article>
+
+  <article class="slide" data-title="干渉の確認">
+    <h2>干渉の確認</h2>
+    <p>組んだ状態で、部品同士が重なっていないかを確かめる。重なっていれば、そのままでは組めない。</p>
+    <figure class="fig" data-demo="interfere">
+      <figcaption>2つのボディの共通部分。体積があれば干渉している。</figcaption>
+    </figure>
+    <ol class="steps">
+      <li>Part ワークベンチに切り替える</li>
+      <li>2つのボディを <kbd>Ctrl</kbd>+クリックで選ぶ</li>
+      <li>［パート］→［ブーリアン］→［共通部分］</li>
+      <li>結果に形状が残れば干渉。確認後は結果を削除し、元のボディを表示に戻す</li>
+    </ol>
+    <p>すき間の量は［測定］ツールで面同士の距離を測って確かめる。</p>
+  </article>
+
+  <article class="slide" data-title="印刷用に並べ直す">
+    <h2>印刷用に並べ直す</h2>
+    <p>組んだ姿勢と印刷する姿勢は、多くの場合で異なる。フタは裏返したほうが平らな面を下にでき、爪のオーバーハングも出ない。</p>
+    <ul>
+      <li>部品ごとに別ファイル（STL・3MF）で書き出し、Bambu Studio で向きを変える</li>
+      <li>または複数ボディを選んで1つの 3MF に書き出し、Bambu Studio で部品ごとに向きと配置を決める</li>
+    </ul>
+    <div class="box point"><p>FreeCAD 側で印刷用に向きを変える必要はない。向きはスライサーで決めるほうが、サポートや時間を見ながら選べる。</p></div>
+  </article>
+</section>

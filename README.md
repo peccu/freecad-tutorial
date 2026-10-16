@@ -42,8 +42,9 @@ python3 -m http.server 8000
 
 ## GitHub Pages で公開する
 
-1. GitHub に空のリポジトリを作り、このフォルダを push する
-2. リポジトリの Settings → Pages → Build and deployment で「Deploy from a branch」、ブランチ `main`、フォルダ `/ (root)` を選ぶ
-3. 数分後に `https://<ユーザー名>.github.io/<リポジトリ名>/` で公開される
+`main` に push すると、`.github/workflows/pages.yml` が GitHub Pages へ配信する。
+
+初回だけ、リポジトリの Settings → Pages → Build and deployment の Source を「GitHub Actions」にする。
+公開先は https://peccu.github.io/freecad-tutorial/ 。
 
 `.nojekyll` を置いてあるので、Jekyll の変換を通さずそのまま配信される。

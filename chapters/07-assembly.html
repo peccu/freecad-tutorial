@@ -10,9 +10,9 @@
     <p>組み合わせる部品が2〜3個なら、1つの .FCStd に複数のボディを作るのが手軽。同じスプレッドシートを参照でき、寸法の食い違いが起きにくい。</p>
     <ol class="steps">
       <li>1つ目のボディで本体を作る</li>
-      <li>［ボディを作成］で2つ目のボディを作る。新しいボディが「アクティブ」（太字表示）になる</li>
+      <li><span class="ui">Create body</span><span class="ja">ボディを作成</span>で2つ目のボディを作る。新しいボディが「アクティブ」<span class="en">Active body</span>（太字表示）になる</li>
       <li>アクティブなボディにだけフィーチャが追加される。切り替えはボディをダブルクリック</li>
-      <li>組んだ位置に置きたい場合は、ボディの配置（Placement）で移動する</li>
+      <li>組んだ位置に置きたい場合は、ボディの配置<span class="en">Placement</span>で移動する</li>
     </ol>
     <div class="box fail"><p>フタを作るつもりで本体のボディがアクティブのまま作業し、本体にフタの形が足される。作業前にツリーで太字のボディを確認する。</p></div>
     <div class="box new"><p>1つのボディ内に、離れた複数の立体を持てるようになった。ただし、別々に印刷・管理する部品はボディを分けたほうが扱いやすい。</p></div>
@@ -20,14 +20,14 @@
 
   <article class="slide" data-title="Assembly ワークベンチ">
     <h2>Assembly ワークベンチ</h2>
-    <p>部品が多い、別ファイルの部品を組みたい、動きを確かめたい、という場合は Assembly ワークベンチを使う。部品同士を「ジョイント」で結び付ける。</p>
+    <p>部品が多い、別ファイルの部品を組みたい、動きを確かめたい、という場合は Assembly ワークベンチを使う。部品同士を「ジョイント」<span class="en">Joint</span>で結び付ける。</p>
     <figure class="fig" data-demo="joints">
       <figcaption>代表的なジョイント。ほかに距離・平行・角度、ギアやベルトなどがある。</figcaption>
     </figure>
     <ol class="steps progressive">
-      <li>［アセンブリを作成］</li>
-      <li>［コンポーネントを挿入］で部品を追加する（開いている文書から選べる）</li>
-      <li>基準になる部品を1つ選び［接地］で固定する</li>
+      <li><span class="ui">Create Assembly</span><span class="ja">アセンブリを作成</span></li>
+      <li><span class="ui">Insert Component</span><span class="ja">コンポーネントを挿入</span>で部品を追加する（開いている文書から選べる）</li>
+      <li>基準になる部品を1つ選び<span class="ui">Ground</span><span class="ja">接地</span>で固定する</li>
       <li>2つの部品の面・辺・点を1つずつ選び、ジョイントの種類を選ぶ</li>
       <li>回転・スライダーのジョイントは、部品をドラッグすると動きを確かめられる</li>
     </ol>
@@ -43,10 +43,10 @@
     <ol class="steps">
       <li>Part ワークベンチに切り替える</li>
       <li>2つのボディを <kbd>Ctrl</kbd>+クリックで選ぶ</li>
-      <li>［パート］→［ブーリアン］→［共通部分］</li>
+      <li><span class="ui">Part → Boolean → Intersection</span><span class="ja">パート → ブーリアン → 共通部分</span></li>
       <li>結果に形状が残れば干渉。確認後は結果を削除し、元のボディを表示に戻す</li>
     </ol>
-    <p>すき間の量は［測定］ツールで面同士の距離を測って確かめる。</p>
+    <p>すき間の量は<span class="ui">Measure</span><span class="ja">測定</span>ツールで面同士の距離を測って確かめる。</p>
   </article>
 
   <article class="slide" data-title="印刷用に並べ直す">

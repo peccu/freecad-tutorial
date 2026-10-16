@@ -8,7 +8,7 @@
   <article class="slide" data-title="画面の構成">
     <h2>画面の構成</h2>
     <figure class="fig" data-demo="bsui">
-      <figcaption>［準備］タブの画面（模式図）。番号を選ぶと説明が出る。</figcaption>
+      <figcaption><span class="ui">Prepare</span><span class="ja">準備</span>タブの画面（模式図）。番号を選ぶと説明が出る。</figcaption>
     </figure>
     <p>作業は左から右へ流れる。左のパネルで「何に・何で・どう印刷するか」を決め、中央で部品を置き、右上のボタンでスライスする。</p>
     <div class="box verify"><p>ボタンの並びやアイコンは版によって変わる。名称が見当たらないときは、アイコンにポインタを合わせて表示される名前で探す。</p></div>
@@ -22,27 +22,27 @@
     </figure>
     <div class="table-wrap"><table>
       <tr><th>プリセット</th><th>決めるもの</th><th>変える頻度</th></tr>
-      <tr><td>プリンタ</td><td>機種、ノズル径、プレートの種類</td><td>ノズルやプレートを替えたとき</td></tr>
-      <tr><td>フィラメント</td><td>ノズル・ベッド温度、冷却、流量、最大速度</td><td>材料を替えたとき</td></tr>
-      <tr><td><span class="term">プロセスプリセット</span></td><td>レイヤー高さ、壁、インフィル、サポート、速度</td><td>部品ごと</td></tr>
+      <tr><td>プリンタ<span class="en">Printer</span></td><td>機種、ノズル径、プレートの種類</td><td>ノズルやプレートを替えたとき</td></tr>
+      <tr><td>フィラメント<span class="en">Filament</span></td><td>ノズル・ベッド温度、冷却、流量、最大速度</td><td>材料を替えたとき</td></tr>
+      <tr><td><span class="term">プロセスプリセット</span><span class="en">Process</span></td><td>レイヤー高さ、壁、インフィル、サポート、速度</td><td>部品ごと</td></tr>
     </table></div>
     <div class="box point"><p>最初はプロセスを「0.20mm Standard」、フィラメントを使う銘柄の公式プリセットにする。変えるのは、まず1回印刷してからでよい。</p></div>
   </article>
 
   <article class="slide" data-title="読み込みと配置">
     <h2>読み込みと配置</h2>
-    <p>ファイルはウィンドウへのドラッグ＆ドロップか、［ファイル］→［インポート］で読み込む。</p>
+    <p>ファイルはウィンドウへのドラッグ＆ドロップか、<span class="ui">File → Import</span><span class="ja">ファイル → インポート</span>で読み込む。</p>
     <div class="table-wrap"><table>
       <tr><th>操作</th><th class="num">キー</th><th>使いどころ</th></tr>
-      <tr><td>移動</td><td class="num"><kbd>M</kbd></td><td>位置を数値で指定することもできる</td></tr>
-      <tr><td>回転</td><td class="num"><kbd>R</kbd></td><td>15° 刻みのスナップ。数値入力も可</td></tr>
-      <tr><td>拡大縮小</td><td class="num"><kbd>S</kbd></td><td>寸法を直接入力できる。設計の修正には使わない</td></tr>
-      <tr><td>面に置く</td><td class="num"><kbd>F</kbd></td><td>クリックした面をプレートに向ける。向き決めの基本</td></tr>
-      <tr><td>カット</td><td class="num"><kbd>C</kbd></td><td>平面で切り分ける（<a href="#ch-bsadv/7">第11章</a>）</td></tr>
-      <tr><td>自動配置</td><td class="num"><kbd>A</kbd></td><td>プレート上に重ならないよう並べる</td></tr>
-      <tr><td>自動向き</td><td class="num">—</td><td>ツールバーのボタン。サポートが少ない向きを提案する</td></tr>
+      <tr><td>移動<span class="en">Move</span></td><td class="num"><kbd>M</kbd></td><td>位置を数値で指定することもできる</td></tr>
+      <tr><td>回転<span class="en">Rotate</span></td><td class="num"><kbd>R</kbd></td><td>15° 刻みのスナップ。数値入力も可</td></tr>
+      <tr><td>拡大縮小<span class="en">Scale</span></td><td class="num"><kbd>S</kbd></td><td>寸法を直接入力できる。設計の修正には使わない</td></tr>
+      <tr><td>面に置く<span class="en">Lay on face</span></td><td class="num"><kbd>F</kbd></td><td>クリックした面をプレートに向ける。向き決めの基本</td></tr>
+      <tr><td>カット<span class="en">Cut</span></td><td class="num"><kbd>C</kbd></td><td>平面で切り分ける（<a href="#ch-bsadv/7">第11章</a>）</td></tr>
+      <tr><td>自動配置<span class="en">Arrange</span></td><td class="num"><kbd>A</kbd></td><td>プレート上に重ならないよう並べる</td></tr>
+      <tr><td>自動向き<span class="en">Auto orient</span></td><td class="num">—</td><td>ツールバーのボタン。サポートが少ない向きを提案する</td></tr>
     </table></div>
-    <div class="box warn"><p>視点の数字キーは FreeCAD と割り当てが違う（<kbd>1</kbd> が上面など）。一覧は［ヘルプ］→［キーボードショートカット］で確認できる。</p></div>
+    <div class="box warn"><p>視点の数字キーは FreeCAD と割り当てが違う（<kbd>1</kbd> が上面など）。一覧は<span class="ui">Help → Keyboard Shortcuts</span><span class="ja">ヘルプ → キーボードショートカット</span>で確認できる。</p></div>
     <div class="box fail"><p>寸法が合わない部品を Bambu Studio の拡大縮小で直し、穴径まで一緒に変わる。寸法の修正は FreeCAD に戻って行う。</p></div>
   </article>
 
@@ -53,7 +53,7 @@
     </figure>
     <dl class="defs">
       <dt><span class="term">プレート</span></dt><dd>1回の印刷単位。プレートごとにスライス・印刷する。素材や設定の違う部品を分けておける。</dd>
-      <dt>グローバルとオブジェクト</dt><dd>プロセスパネルの切り替えで、プレート全体の設定（グローバル）と部品ごとの上書き（オブジェクト）を行き来する。上書きした項目はオブジェクト一覧に表示される。</dd>
+      <dt>グローバルとオブジェクト<span class="en">Global / Objects</span></dt><dd>プロセスパネルの切り替えで、プレート全体の設定（グローバル）と部品ごとの上書き（オブジェクト）を行き来する。上書きした項目はオブジェクト一覧に表示される。</dd>
     </dl>
     <p>プロジェクトは .3mf で保存する。部品・配置・設定がまとめて入るので、同じ部品を後日もう一度印刷するときに便利。</p>
   </article>
@@ -66,7 +66,7 @@
       <li>プリセット名の横の保存ボタンを押す</li>
       <li>「0.20mm 壁3」など、違いが分かる名前を付ける</li>
     </ol>
-    <p>保存したプリセットは「ユーザープリセット」として一覧に並ぶ。Bambu Lab アカウントでログインしていれば、別の PC とも同期される。</p>
+    <p>保存したプリセットは「ユーザープリセット」<span class="en">User presets</span>として一覧に並ぶ。Bambu Lab アカウントでログインしていれば、別の PC とも同期される。</p>
     <div class="quiz" data-id="bs-1">
       <p class="q">材料を PLA から PETG に替えた。まず変えるべきプリセットはどれか。</p>
       <div class="opts">

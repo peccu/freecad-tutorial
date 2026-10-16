@@ -336,27 +336,27 @@
      第2章：FreeCAD の画面
      ============================================================ */
   D.fcui = (fig) => {
-    const Z = [
-      [0, 0, 480, 16, "メニューバー", "全コマンドの入口。消えたパネルは［表示］→［パネル］から、ツールバーは［表示］→［ツールバー］から戻す。"],
-      [100, 16, 380, 24, "ツールバー", "選択中のワークベンチ用のツールが並ぶ。ワークベンチを切り替えると中身が入れ替わる。"],
-      [0, 16, 100, 24, "ワークベンチ切替", "プルダウンで作業の種類を選ぶ。部品設計は Part Design。"],
-      [0, 40, 140, 132, "コンボビュー：モデル", "文書内のオブジェクトと作成履歴（ツリー）。ダブルクリックで再編集。目のアイコン（またはスペースキー）で表示切替。"],
-      [0, 172, 140, 128, "プロパティビュー", "選択したオブジェクトの全パラメータ。［データ］は形状の値、［ビュー］は色・透明度など見た目。"],
-      [140, 40, 340, 210, "3Dビュー", "形状の表示と選択。面・辺・頂点をクリックで選択、Ctrl+クリックで追加選択。"],
-      [416, 46, 58, 58, "ナビゲーションキューブ", "面・辺・角のクリックで標準ビューへ。矢印で90°回転。"],
-      [140, 250, 340, 50, "レポートビュー", "警告・エラーの表示先。表示されていなければ［表示］→［パネル］→［レポートビュー］。"],
-      [0, 300, 480, 20, "ステータスバー", "右端でナビゲーションスタイル（マウス操作の方式）と単位系を切り替えられる。"],
+    const Z = [ // [x, y, w, h, 英語名, 日本語名, 説明]
+      [0, 0, 480, 16, "Menu bar", "メニューバー", "全コマンドの入口。消えたパネルは <span class='ui'>View → Panels</span><span class='ja'>表示 → パネル</span> から、ツールバーは <span class='ui'>View → Toolbars</span><span class='ja'>表示 → ツールバー</span> から戻す。"],
+      [100, 16, 380, 24, "Toolbars", "ツールバー", "選択中のワークベンチ用のツールが並ぶ。ワークベンチを切り替えると中身が入れ替わる。"],
+      [0, 16, 100, 24, "Workbench selector", "ワークベンチ切替", "プルダウンで作業の種類を選ぶ。部品設計は Part Design。"],
+      [0, 40, 140, 132, "Combo View: Model", "コンボビュー：モデル", "文書内のオブジェクトと作成履歴（ツリー）。ダブルクリックで再編集。<kbd>Space</kbd> で表示切替。"],
+      [0, 172, 140, 128, "Property View", "プロパティビュー", "選択したオブジェクトの全パラメータ。<span class='ui'>Data</span><span class='ja'>データ</span> タブは形状の値、<span class='ui'>View</span><span class='ja'>ビュー</span> タブは色・透明度など見た目。"],
+      [140, 40, 340, 210, "3D View", "3Dビュー", "形状の表示と選択。面・辺・頂点をクリックで選択、<kbd>Ctrl</kbd>+クリックで追加選択。"],
+      [416, 46, 58, 58, "Navigation Cube", "ナビゲーションキューブ", "面・辺・角のクリックで標準ビューへ。矢印で90°回転。"],
+      [140, 250, 340, 50, "Report view", "レポートビュー", "警告・エラーの表示先。表示されていなければ <span class='ui'>View → Panels → Report view</span><span class='ja'>表示 → パネル → レポートビュー</span>。"],
+      [0, 300, 480, 20, "Status bar", "ステータスバー", "右端でナビゲーションスタイル（Navigation style：マウス操作の方式）と単位系を切り替えられる。"],
     ];
     const P = iso(2.2, 300, 150);
     let art = `<rect x="0" y="0" width="480" height="320" class="s-line" style="fill:var(--paper)"/>`;
     art += line(0, 16, 480, 16, "s-thin") + line(0, 40, 480, 40, "s-thin") + line(140, 40, 140, 300, "s-thin") +
       line(0, 172, 140, 172, "s-thin") + line(140, 250, 480, 250, "s-thin") + line(0, 300, 480, 300, "s-thin");
-    ["ファイル", "編集", "表示", "ツール", "マクロ", "ヘルプ"].forEach((m, i) => (art += text(8 + i * 42, 12, m, "t-xs t-m")));
+    ["File", "Edit", "View", "Tools", "Macro", "Window", "Help"].forEach((m, i) => (art += text(8 + i * 40, 12, m, "t-xs t-m")));
     art += `<rect x="6" y="20" width="88" height="16" rx="2" class="s-thin"/>` + text(12, 32, "Part Design ▾", "t-xs");
     for (let i = 0; i < 12; i++) art += `<rect x="${108 + i * 22}" y="21" width="16" height="14" rx="2" class="s-thin"/>`;
-    art += `<rect x="4" y="44" width="40" height="13" rx="2" class="s-thin"/>` + text(9, 54, "モデル", "t-xs") + text(52, 54, "タスク", "t-xs t-m");
+    art += `<rect x="4" y="44" width="40" height="13" rx="2" class="s-thin"/>` + text(9, 54, "Model", "t-xs") + text(52, 54, "Tasks", "t-xs t-m");
     ["▾ Body", "　Origin", "　Sketch", "　Pad", "　Sketch001", "　Pocket"].forEach((t, i) => (art += text(8, 76 + i * 15, t, "t-xs")));
-    ["プロパティ　値", "Length　10 mm", "Type　Dimension", "Reversed　false"].forEach((t, i) => (art += text(8, 190 + i * 15, t, "t-xs t-m")));
+    ["Property　Value", "Length　10 mm", "Type　Dimension", "Reversed　false"].forEach((t, i) => (art += text(8, 190 + i * 15, t, "t-xs t-m")));
     art += isoBox(P, -20, -14, 0, 40, 28, 16);
     art += `<g transform="translate(445 75)">${isoBox(iso(1, 0, 0), -11, -11, -8, 22, 22, 22)}</g>`;
     art += text(148, 266, "Report view：…", "t-xs t-m");
@@ -368,7 +368,7 @@
     const pane = c.querySelector(".info-pane");
     const sel = (i) => {
       c.querySelectorAll(".hot").forEach((g) => g.classList.toggle("on", +g.dataset.i === i));
-      pane.innerHTML = `<b>${i + 1}. ${Z[i][4]}</b>${Z[i][5]}`;
+      pane.innerHTML = `<b>${i + 1}. ${Z[i][4]}<span class="ja">${Z[i][5]}</span></b>${Z[i][6]}`;
     };
     c.querySelectorAll(".hot").forEach((g) => { g.addEventListener("click", () => sel(+g.dataset.i)); g.addEventListener("mouseenter", () => sel(+g.dataset.i)); });
     sel(3);
@@ -398,24 +398,24 @@
 
   D.sktools = (fig) => {
     const T = [
-      ["直線", `<line x1="6" y1="30" x2="34" y2="10" class="s-line"/><circle cx="6" cy="30" r="2.2" class="s-acc"/><circle cx="34" cy="10" r="2.2" class="s-acc"/>`],
-      ["ポリライン", `<path d="M5 32 L14 10 L26 26 L35 8" class="s-line"/>`],
-      ["長方形", `<rect x="6" y="10" width="28" height="20" class="s-line"/>`],
-      ["円", `<circle cx="20" cy="20" r="13" class="s-line"/><circle cx="20" cy="20" r="1.8" class="s-acc"/>`],
-      ["円弧", `<path d="M7 28 A 15 15 0 0 1 33 28" class="s-line"/><circle cx="20" cy="31" r="1.8" class="s-acc"/>`],
-      ["長穴", `<path d="M12 12 H28 A8 8 0 0 1 28 28 H12 A8 8 0 0 1 12 12 Z" class="s-line"/>`],
-      ["フィレット", `<path d="M6 32 V18 A10 10 0 0 1 16 8 H34" class="s-line"/>`],
-      ["構築線", `<line x1="5" y1="20" x2="35" y2="20" style="stroke:var(--ink);stroke-dasharray:4 3;stroke-width:1.4"/><circle cx="20" cy="20" r="11" style="stroke:var(--ink);stroke-dasharray:4 3;fill:none"/>`],
+      ["直線|Line", `<line x1="6" y1="30" x2="34" y2="10" class="s-line"/><circle cx="6" cy="30" r="2.2" class="s-acc"/><circle cx="34" cy="10" r="2.2" class="s-acc"/>`],
+      ["ポリライン|Polyline", `<path d="M5 32 L14 10 L26 26 L35 8" class="s-line"/>`],
+      ["長方形|Rectangle", `<rect x="6" y="10" width="28" height="20" class="s-line"/>`],
+      ["円|Circle", `<circle cx="20" cy="20" r="13" class="s-line"/><circle cx="20" cy="20" r="1.8" class="s-acc"/>`],
+      ["円弧|Arc", `<path d="M7 28 A 15 15 0 0 1 33 28" class="s-line"/><circle cx="20" cy="31" r="1.8" class="s-acc"/>`],
+      ["長穴|Slot", `<path d="M12 12 H28 A8 8 0 0 1 28 28 H12 A8 8 0 0 1 12 12 Z" class="s-line"/>`],
+      ["フィレット|Fillet", `<path d="M6 32 V18 A10 10 0 0 1 16 8 H34" class="s-line"/>`],
+      ["構築線|Construction", `<line x1="5" y1="20" x2="35" y2="20" style="stroke:var(--ink);stroke-dasharray:4 3;stroke-width:1.4"/><circle cx="20" cy="20" r="11" style="stroke:var(--ink);stroke-dasharray:4 3;fill:none"/>`],
     ];
-    cv(fig).innerHTML = `<ul class="icon-grid">${T.map(([n, i]) => `<li><svg viewBox="0 0 40 40" width="40" height="40">${i}</svg><span>${n}</span></li>`).join("")}</ul>`;
+    cv(fig).innerHTML = `<ul class="icon-grid">${T.map(([n, i]) => `<li><svg viewBox="0 0 40 40" width="40" height="40">${i}</svg><span>${n.split("|")[0]}<span class="en">${n.split("|")[1]}</span></span></li>`).join("")}</ul>`;
   };
 
   // 拘束と自由度
   D.constraints = (fig) => {
     const c = cv(fig);
     const C = [
-      ["coin", "一致（4角）", 8], ["horiz", "水平（上下の辺）", 2], ["vert", "垂直（左右の辺）", 2],
-      ["w", "距離：幅 40mm", 1], ["h", "距離：高さ 24mm", 1], ["org", "原点に一致", 2],
+      ["coin", "一致 Coincident（4角）", 8], ["horiz", "水平 Horizontal（上下）", 2], ["vert", "垂直 Vertical（左右）", 2],
+      ["w", "距離 Distance：幅 40", 1], ["h", "距離 Distance：高さ 24", 1], ["org", "原点に一致", 2],
     ];
     const on = {};
     c.innerHTML = `<div class="ctrl cbtns">${C.map(([k, l]) => `<button class="btn" data-k="${k}" aria-pressed="false">${l}</button>`).join("")}

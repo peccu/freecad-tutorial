@@ -2,58 +2,58 @@
 
   <article class="slide opener" data-title="扉">
     <h1>主要なスライス設定</h1>
-    <p class="lead">見た目・強度・時間・材料のバランスを決める設定。プロセスプリセットの［品質］［強度］［速度］［サポート］［その他］の各タブに分かれている。</p>
+    <p class="lead">見た目・強度・時間・材料のバランスを決める設定。プロセスプリセットの<span class="ui">Quality</span><span class="ja">品質</span><span class="ui">Strength</span><span class="ja">強度</span><span class="ui">Speed</span><span class="ja">速度</span><span class="ui">Support</span><span class="ja">サポート</span><span class="ui">Others</span><span class="ja">その他</span>の各タブに分かれている。</p>
   </article>
 
   <article class="slide" data-title="レイヤー高さ">
     <h2>レイヤー高さ</h2>
-    <p>［品質］タブ。印刷時間に最も大きく効く設定で、時間は層の数にほぼ比例する。</p>
+    <p><span class="ui">Quality</span><span class="ja">品質</span>タブ。印刷時間に最も大きく効く設定で、時間は層の数にほぼ比例する。</p>
     <figure class="fig" data-demo="layertime">
       <figcaption>レイヤー高さと印刷時間の関係（層数に比例する単純化したモデル）。点は標準のプロセスプリセット。</figcaption>
     </figure>
     <ul>
       <li>レイヤー高さはノズル径の 25〜75% が使える範囲。0.4mm ノズルなら 0.08〜0.28mm</li>
-      <li>第1層は別に「初期レイヤー高さ」で決まる。0.2mm 前後のまま変えないほうが密着が安定する</li>
+      <li>第1層は別に「初期レイヤー高さ」<span class="en">Initial layer height</span>で決まる。0.2mm 前後のまま変えないほうが密着が安定する</li>
       <li>一部だけ細かくしたいときは、高さ範囲ごとの設定か可変レイヤー高さを使う（<a href="#ch-bsadv">第11章</a>）</li>
     </ul>
   </article>
 
   <article class="slide" data-title="壁と上下面">
     <h2>壁と上下面</h2>
-    <p>［強度］タブ。部品の外側の殻を作る設定で、強度への影響はインフィルより大きい。</p>
+    <p><span class="ui">Strength</span><span class="ja">強度</span>タブ。部品の外側の殻を作る設定で、強度への影響はインフィルより大きい。</p>
     <figure class="fig" data-demo="shell">
       <figcaption>部品の断面。壁（外周の線）、上下面（ぎっしり埋めた層）、インフィル（内部の格子）の関係。</figcaption>
     </figure>
     <div class="table-wrap"><table>
       <tr><th>設定</th><th>目安</th></tr>
       <tr><td><span class="term">壁（ウォール）</span>のループ数</td><td>2（標準）、強度が欲しければ 3〜5</td></tr>
-      <tr><td>上面の層数</td><td>上面の厚さが 0.8〜1.0mm 以上になる層数（0.2mm なら 4〜5 層）</td></tr>
-      <tr><td>下面の層数</td><td>3〜4 層</td></tr>
+      <tr><td>上面の層数<span class="en">Top shell layers</span></td><td>上面の厚さが 0.8〜1.0mm 以上になる層数（0.2mm なら 4〜5 層）</td></tr>
+      <tr><td>下面の層数<span class="en">Bottom shell layers</span></td><td>3〜4 層</td></tr>
     </table></div>
     <div class="box point"><p>強度を上げたいとき、最初に増やすのはインフィルではなく壁。壁を2周から4周にするほうが、インフィルを2倍にするより効くことが多い。</p></div>
   </article>
 
   <article class="slide" data-title="インフィル">
     <h2>インフィル</h2>
-    <p>［強度］タブ。部品の内部を埋める格子。密度とパターンを選ぶ。</p>
+    <p><span class="ui">Strength</span><span class="ja">強度</span>タブ。部品の内部を埋める格子。密度とパターンを選ぶ。</p>
     <figure class="fig" data-demo="infill">
       <figcaption>インフィルのパターンと密度（上から見た1層、模式図）。</figcaption>
     </figure>
     <ul>
       <li>密度は 10〜20% が普段使いの範囲。飾り物なら 5〜10%、ねじ止め部品は 25〜40%</li>
       <li>100% にしても、壁を増やした場合ほどには強くならないことが多い。時間と材料は大きく増える</li>
-      <li>上面を支えるだけなら「ライトニング」が速い（強度は期待しない）</li>
+      <li>上面を支えるだけなら「ライトニング」<span class="en">Lightning</span>が速い（強度は期待しない）</li>
     </ul>
   </article>
 
   <article class="slide" data-title="サポート">
     <h2>サポート</h2>
-    <p>［サポート］タブ。<span class="term">オーバーハング</span>を下から支える仮の構造。印刷後に取り外す。</p>
+    <p><span class="ui">Support</span><span class="ja">サポート</span>タブ。<span class="term">オーバーハング</span>を下から支える仮の構造。印刷後に取り外す。</p>
     <figure class="fig" data-demo="support">
       <figcaption>サポートの2つの方式。</figcaption>
     </figure>
     <h3>しきい値角度</h3>
-    <p>どの傾きからサポートを付けるかは「しきい値角度」で決める。Bambu Studio の角度は<b>水平面から</b>測る点に注意する。第6章の「45°」は垂直から測った値。</p>
+    <p>どの傾きからサポートを付けるかは「しきい値角度」<span class="en">Threshold angle</span>で決める。Bambu Studio の角度は<b>水平面から</b>測る点に注意する。第6章の「45°」は垂直から測った値。</p>
     <figure class="fig" data-demo="threshold">
       <figcaption>しきい値角度とサポートが付く面。</figcaption>
     </figure>
@@ -63,46 +63,46 @@
     <h2>サポートを付ける範囲</h2>
     <div class="table-wrap"><table>
       <tr><th>設定・機能</th><th>効果</th></tr>
-      <tr><td>タイプ：自動／手動</td><td>自動はしきい値で判定。手動はペイントした場所だけに付ける</td></tr>
-      <tr><td>プレート上のみ</td><td>部品の上にサポートを立てない。部品表面のサポート跡を防げる</td></tr>
-      <tr><td>サポートペイント</td><td>付けたい面・付けたくない面を塗って指定する（<a href="#ch-bsadv/3">第11章</a>）</td></tr>
-      <tr><td>上部 Z 距離</td><td>サポートと部品のすき間。大きいと外しやすいが下面が荒れる</td></tr>
-      <tr><td>サポート界面</td><td>部品と接する部分だけ密にする。別材料（PLA 用サポート材など）も指定できる</td></tr>
+      <tr><td>タイプ：自動／手動<span class="en">Type: normal / tree (auto / manual)</span></td><td>自動はしきい値で判定。手動はペイントした場所だけに付ける</td></tr>
+      <tr><td>プレート上のみ<span class="en">On build plate only</span></td><td>部品の上にサポートを立てない。部品表面のサポート跡を防げる</td></tr>
+      <tr><td>サポートペイント<span class="en">Support painting</span></td><td>付けたい面・付けたくない面を塗って指定する（<a href="#ch-bsadv/3">第11章</a>）</td></tr>
+      <tr><td>上部 Z 距離<span class="en">Top Z distance</span></td><td>サポートと部品のすき間。大きいと外しやすいが下面が荒れる</td></tr>
+      <tr><td>サポート界面<span class="en">Support interface</span></td><td>部品と接する部分だけ密にする。別材料（PLA 用サポート材など）も指定できる</td></tr>
     </table></div>
     <div class="box fail"><p>サポートを念のため全面に付けて、穴の中や細い隙間にも入り込み、取れなくなる。プレビューで入り込みを確認し、ペイントで消す。</p></div>
   </article>
 
   <article class="slide" data-title="ブリムとプレート">
     <h2>ブリムとプレート</h2>
-    <p>［その他］タブ。第1層の密着を助ける。</p>
+    <p><span class="ui">Others</span><span class="ja">その他</span>タブ。第1層の密着を助ける。</p>
     <figure class="fig" data-demo="brim">
       <figcaption><span class="term">ブリム</span>と耳（マウスイヤー）。</figcaption>
     </figure>
     <ul>
-      <li>ブリムタイプ「自動」は、接地面が小さい・反りやすい部品にだけブリムを付ける</li>
+      <li>ブリムタイプ<span class="en">Brim type</span>「自動」<span class="en">Auto</span>は、接地面が小さい・反りやすい部品にだけブリムを付ける</li>
       <li>細長い部品、ABS・ASA の部品、背の高い細い部品にはブリムを付ける</li>
-      <li>プリンタプリセットのプレートの種類は、実際に載せているプレートと必ず合わせる。温度と第1層の条件が変わる</li>
+      <li>プリンタプリセットのプレートの種類<span class="en">Plate type</span>は、実際に載せているプレートと必ず合わせる。温度と第1層の条件が変わる</li>
     </ul>
     <div class="box point"><p>密着不良の多くは、プレートの皮脂が原因。中性洗剤と水で洗い、完全に乾かす。触るのは縁だけにする。</p></div>
   </article>
 
   <article class="slide" data-title="シーム">
     <h2>シーム</h2>
-    <p>［品質］タブ。各層の外周は1点から始まって1点で終わる。その継ぎ目が <span class="term">シーム</span>。</p>
+    <p><span class="ui">Quality</span><span class="ja">品質</span>タブ。各層の外周は1点から始まって1点で終わる。その継ぎ目が <span class="term">シーム</span>。</p>
     <figure class="fig" data-demo="seam">
       <figcaption>シーム位置の選び方（模式図）。赤い点が各層の継ぎ目。</figcaption>
     </figure>
-    <p>角のある部品なら「整列」で角に寄せるのがもっとも目立たない。丸い部品は「背面」で見えない側へ。特定の位置に置きたいときはシームペイントを使う。</p>
+    <p>角のある部品なら「整列」<span class="en">Aligned</span>で角に寄せるのがもっとも目立たない。丸い部品は「背面」<span class="en">Back</span>で見えない側へ。特定の位置に置きたいときはシームペイント<span class="en">Seam painting</span>を使う。</p>
   </article>
 
   <article class="slide" data-title="寸法の補正">
     <h2>寸法の補正</h2>
-    <p>［品質］タブの精度の項目。設計で吸収しきれない寸法のずれを補う。</p>
+    <p><span class="ui">Quality</span><span class="ja">品質</span>タブの精度の項目。設計で吸収しきれない寸法のずれを補う。</p>
     <div class="table-wrap"><table>
       <tr><th>設定</th><th>効果</th><th>目安</th></tr>
-      <tr><td>X-Y 穴補正</td><td>垂直な穴を大きくする</td><td>穴がきつい部品で 0.05〜0.1mm</td></tr>
-      <tr><td>X-Y 輪郭補正</td><td>外形を小さくする</td><td>外形が太るとき 0.05mm 程度</td></tr>
-      <tr><td>象の足補正</td><td>第1層を内側へ縮める</td><td>0.1〜0.15mm</td></tr>
+      <tr><td>X-Y 穴補正<span class="en">X-Y hole compensation</span></td><td>垂直な穴を大きくする</td><td>穴がきつい部品で 0.05〜0.1mm</td></tr>
+      <tr><td>X-Y 輪郭補正<span class="en">X-Y contour compensation</span></td><td>外形を小さくする</td><td>外形が太るとき 0.05mm 程度</td></tr>
+      <tr><td>象の足補正<span class="en">Elephant foot compensation</span></td><td>第1層を内側へ縮める</td><td>0.1〜0.15mm</td></tr>
     </table></div>
     <div class="box point"><p>補正はプレート全体にかかる。部品ごとの寸法調整は FreeCAD の clr 変数で行い、補正は「この機種・この材料の癖」を吸収する用途に限るとよい。</p></div>
   </article>
@@ -127,9 +127,9 @@
       <tr><th>目的</th><th class="num">レイヤー</th><th class="num">壁</th><th class="num">インフィル</th><th>そのほか</th></tr>
       <tr><td>形の確認（試作）</td><td class="num">0.24〜0.28</td><td class="num">2</td><td class="num">10%</td><td>サポートは最小限</td></tr>
       <tr><td>普段使いの部品</td><td class="num">0.20</td><td class="num">2〜3</td><td class="num">15%</td><td>標準のまま</td></tr>
-      <tr><td>見た目重視</td><td class="num">0.12〜0.16</td><td class="num">3</td><td class="num">15%</td><td>シームは背面か整列、上面にアイロニング</td></tr>
-      <tr><td>強度重視</td><td class="num">0.20</td><td class="num">4〜6</td><td class="num">25〜40%</td><td>ジャイロイド。印刷向きを最優先</td></tr>
-      <tr><td>柔らかい部品（TPU）</td><td class="num">0.20</td><td class="num">2〜3</td><td class="num">10〜20%</td><td>同心かジャイロイド。低速</td></tr>
+      <tr><td>見た目重視</td><td class="num">0.12〜0.16</td><td class="num">3</td><td class="num">15%</td><td>シームは背面か整列、上面にアイロニング<span class="en">Ironing</span></td></tr>
+      <tr><td>強度重視</td><td class="num">0.20</td><td class="num">4〜6</td><td class="num">25〜40%</td><td>ジャイロイド<span class="en">Gyroid</span>。印刷向きを最優先</td></tr>
+      <tr><td>柔らかい部品（TPU）</td><td class="num">0.20</td><td class="num">2〜3</td><td class="num">10〜20%</td><td>同心<span class="en">Concentric</span>かジャイロイド。低速</td></tr>
     </table></div>
     <div class="quiz" data-id="sl-1">
       <p class="q">棚受けを強くしたい。最初に変える設定として効果が大きいのはどれか。</p>

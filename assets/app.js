@@ -290,7 +290,7 @@
       if (!g) return;
       if (tipFor !== el) shownAt = Date.now();
       tipFor = el;
-      tip.innerHTML = `<b>${esc(key)}</b>${esc(g.desc)}`;
+      tip.innerHTML = `<b>${esc(key)}${g.en ? `　<span class="tip-en">${esc(g.en)}</span>` : ""}</b>${esc(g.desc)}`;
       tip.hidden = false;
       const r = el.getBoundingClientRect();
       const top = r.bottom + 8 + tip.offsetHeight > innerHeight ? r.top - tip.offsetHeight - 8 : r.bottom + 8;
@@ -298,6 +298,16 @@
       tip.style.left = Math.max(8, Math.min(innerWidth - tip.offsetWidth - 8, r.left)) + "px";
     }
     const hideTip = () => { tip.hidden = true; tipFor = null; };
+    // 各章の初出の用語に英語名を添える
+    chapters.forEach((c) => {
+      const done = new Set();
+      $$(".term", c.el).forEach((el) => {
+        const key = el.dataset.term || el.textContent.trim(), g = G[key];
+        if (!g?.en || done.has(key) || el.closest("h1,h2,h3,figcaption")) return;
+        done.add(key);
+        el.insertAdjacentHTML("afterend", `<span class="en">${esc(g.en.replace(/（.*）/, ""))}</span>`);
+      });
+    });
     $$(".term").forEach((el) => {
       el.tabIndex = 0;
       el.addEventListener("mouseenter", () => showTip(el));
@@ -314,12 +324,12 @@
     const gl = $("#glossary-list");
     if (gl) {
       const keys = Object.keys(G).sort((a, b) => (G[a].cat + a).localeCompare(G[b].cat + b, "ja"));
-      gl.innerHTML = keys.map((k) => `<dt data-k="${esc(k)}">${esc(k)}<small>${esc(G[k].cat)}</small></dt><dd data-k="${esc(k)}">${esc(G[k].desc)}${G[k].see ? ` <a href="#${G[k].see}">該当章へ</a>` : ""}</dd>`).join("");
+      gl.innerHTML = keys.map((k) => `<dt data-k="${esc(k)}">${esc(k)}${G[k].en ? `<span class="gl-en">${esc(G[k].en)}</span>` : ""}<small>${esc(G[k].cat)}</small></dt><dd data-k="${esc(k)}">${esc(G[k].desc)}${G[k].see ? ` <a href="#${G[k].see}">該当章へ</a>` : ""}</dd>`).join("");
       $("#glossary-filter")?.addEventListener("input", (e) => {
         const q = e.target.value.trim().toLowerCase();
         $$("dt,dd", gl).forEach((n) => {
           const k = n.dataset.k;
-          n.classList.toggle("hidden", !!q && !(k + G[k].desc + G[k].cat).toLowerCase().includes(q));
+          n.classList.toggle("hidden", !!q && !(k + (G[k].en || "") + G[k].desc + G[k].cat).toLowerCase().includes(q));
         });
       });
     }

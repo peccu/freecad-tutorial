@@ -30,7 +30,7 @@
     <ol class="steps progressive">
       <li>ボディを作り、XY 平面にスケッチ。長方形を原点に対して対称に描き、幅 <code>=Spreadsheet.width</code>、奥行 <code>=Spreadsheet.depth</code> の式を入れる（<a href="#ch-sketch/4">3章</a>、<a href="#ch-param/2">5章</a>）</li>
       <li>パッドで高さ <code>=Spreadsheet.height</code>（<a href="#ch-partdesign/3">4章</a>）</li>
-      <li>［厚み］で上面を開口に、肉厚 <code>=Spreadsheet.wall</code>。底の厚さは厚みと同じになるので、<code>floor</code> を別に効かせたい場合は、厚みの代わりに上面からポケットで掘る</li>
+      <li><span class="ui">Thickness</span><span class="ja">厚み</span>で上面を開口に、肉厚 <code>=Spreadsheet.wall</code>。底の厚さは厚みと同じになるので、<code>floor</code> を別に効かせたい場合は、厚みの代わりに上面からポケットで掘る</li>
       <li>外側の縦の辺に R3 のフィレット、底面の外周に C0.5 の面取り（<a href="#ch-dfam/7">6章</a>）</li>
     </ol>
   </article>
@@ -40,8 +40,8 @@
     <ol class="steps progressive">
       <li>2つ目のボディを作り、アクティブにする（<a href="#ch-assembly/2">7章</a>）</li>
       <li>天板：XY 平面のスケッチに本体と同じ外形。パッドで厚さ <code>=Spreadsheet.wall</code></li>
-      <li>爪：天板の下に、外寸 <code>=Spreadsheet.inW - 2 * Spreadsheet.clr</code> の輪郭を描き、深さ <code>=Spreadsheet.lipH</code> で下向きにパッド。中を［厚み］かポケットで抜き、肉厚 1.2</li>
-      <li>フタを本体の上に配置して、［共通部分］で干渉がないことを確認する（<a href="#ch-assembly/4">7章</a>）</li>
+      <li>爪：天板の下に、外寸 <code>=Spreadsheet.inW - 2 * Spreadsheet.clr</code> の輪郭を描き、深さ <code>=Spreadsheet.lipH</code> で下向きにパッド。中を<span class="ui">Thickness</span><span class="ja">厚み</span>かポケットで抜き、肉厚 1.2</li>
+      <li>フタを本体の上に配置して、<span class="ui">Intersection</span><span class="ja">共通部分</span>で干渉がないことを確認する（<a href="#ch-assembly/4">7章</a>）</li>
       <li>指をかける切り欠きを天板の縁にポケットで作る</li>
     </ol>
     <div class="box point"><p>爪の外寸の式は「内寸 − 2×clr」。この1行が正しければ、clr を変えるだけで硬さを調整できる。</p></div>

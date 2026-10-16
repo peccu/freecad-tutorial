@@ -11,29 +11,29 @@
      第9章：Bambu Studio の画面
      ============================================================ */
   D.bsui = (fig) => {
-    const Z = [
-      [0, 0, 330, 22, "上部タブ", "［準備］で配置と設定、［プレビュー］でスライス結果の確認、［デバイス］でプリンタの状態とカメラ。"],
-      [330, 0, 150, 22, "スライス／印刷ボタン", "［プレートをスライス］で計算し、［プレートを印刷］で送信画面へ進む。プレートが複数なら一括も選べる。"],
-      [0, 22, 140, 58, "プリンタ", "機種、ノズル径、ビルドプレートの種類。実機と一致していないと第一層や温度が合わない。"],
-      [0, 80, 140, 70, "フィラメント", "使う材料の一覧。AMS 使用時は同期ボタンで装填中の色・種類を読み込める。"],
-      [0, 150, 140, 170, "プロセス", "レイヤー高さ・壁・インフィル・サポートなどの印刷設定。［グローバル］はプレート全体、［オブジェクト］は部品ごとの上書き。"],
-      [140, 22, 340, 28, "ツールバー", "追加・自動配置・自動向き、移動・回転・拡大縮小・面に置く・カット・ペイント類。"],
-      [140, 50, 300, 270, "3Dビュー（プレート）", "部品の配置と選択。右クリックで部品ごとのメニュー（モディファイア追加など）。"],
-      [440, 50, 40, 270, "プレート一覧", "プレートの切替・追加。プレートごとにスライスと印刷ができる。"],
+    const Z = [ // [x, y, w, h, 英語名, 日本語名, 説明]
+      [0, 0, 330, 22, "Tabs", "上部タブ", "<span class='ui'>Prepare</span><span class='ja'>準備</span> で配置と設定、<span class='ui'>Preview</span><span class='ja'>プレビュー</span> でスライス結果の確認、<span class='ui'>Device</span><span class='ja'>デバイス</span> でプリンタの状態とカメラ。"],
+      [330, 0, 150, 22, "Slice / Print", "スライス／印刷ボタン", "<span class='ui'>Slice plate</span><span class='ja'>プレートをスライス</span> で計算し、<span class='ui'>Print plate</span><span class='ja'>プレートを印刷</span> で送信画面へ進む。プレートが複数なら一括も選べる。"],
+      [0, 22, 140, 58, "Printer", "プリンタ", "機種、ノズル径、ビルドプレートの種類（Plate type）。実機と一致していないと第一層や温度が合わない。"],
+      [0, 80, 140, 70, "Filament", "フィラメント", "使う材料の一覧。AMS 使用時は同期ボタンで装填中の色・種類を読み込める。"],
+      [0, 150, 140, 170, "Process", "プロセス", "レイヤー高さ・壁・インフィル・サポートなどの印刷設定。<span class='ui'>Global</span><span class='ja'>グローバル</span> はプレート全体、<span class='ui'>Objects</span><span class='ja'>オブジェクト</span> は部品ごとの上書き。"],
+      [140, 22, 340, 28, "Toolbar", "ツールバー", "追加（Add）・自動配置（Arrange）・自動向き（Auto orient）、移動・回転・拡大縮小・面に置く（Lay on face）・カット（Cut）・ペイント類。"],
+      [140, 50, 300, 270, "3D view (plate)", "3Dビュー（プレート）", "部品の配置と選択。右クリックで部品ごとのメニュー（<span class='ui'>Add Modifier</span><span class='ja'>モディファイアを追加</span> など）。"],
+      [440, 50, 40, 270, "Plate list", "プレート一覧", "プレートの切替・追加。プレートごとにスライスと印刷ができる。"],
     ];
     let art = `<rect x="0" y="0" width="480" height="320" class="s-line" style="fill:var(--paper)"/>`;
     art += line(0, 22, 480, 22, "s-thin") + line(140, 22, 140, 320, "s-thin") + line(140, 50, 480, 50, "s-thin") + line(440, 50, 440, 320, "s-thin") +
       line(0, 80, 140, 80, "s-thin") + line(0, 150, 140, 150, "s-thin");
-    ["ホーム", "準備", "プレビュー", "デバイス", "プロジェクト"].forEach((t, i) => (art += text(10 + i * 56, 15, t, i === 1 ? "t-xs t-b" : "t-xs t-m")));
+    ["Home", "Prepare", "Preview", "Device", "Project"].forEach((t, i) => (art += text(10 + i * 56, 15, t, i === 1 ? "t-xs t-b" : "t-xs t-m")));
     art += `<rect x="340" y="4" width="64" height="14" rx="2" class="s-thin"/><rect x="410" y="4" width="64" height="14" rx="2" style="fill:var(--accent-2);stroke:none"/>` +
-      text(372, 14.5, "スライス", "t-xs", "middle") + text(442, 14.5, "印刷", "t-xs", "middle", 'style="fill:#fff"');
-    art += text(8, 38, "プリンタ", "t-xs t-b") + `<rect x="8" y="44" width="124" height="14" rx="2" class="s-thin"/>` + text(12, 54, "機種 0.4 nozzle ▾", "t-xs t-m") + text(12, 72, "プレート：テクスチャ PEI", "t-xs t-m");
-    art += text(8, 96, "フィラメント", "t-xs t-b");
+      text(372, 14.5, "Slice plate", "t-xs", "middle") + text(442, 14.5, "Print plate", "t-xs", "middle", 'style="fill:#fff"');
+    art += text(8, 38, "Printer", "t-xs t-b") + `<rect x="8" y="44" width="124" height="14" rx="2" class="s-thin"/>` + text(12, 54, "機種 0.4 nozzle ▾", "t-xs t-m") + text(12, 72, "Plate: Textured PEI", "t-xs t-m");
+    art += text(8, 96, "Filament", "t-xs t-b");
     [["var(--accent)", "PLA"], ["var(--ink)", "PLA"], ["var(--text)", "PETG"]].forEach(([col, n], i) => (art += `<rect x="10" y="${104 + i * 14}" width="10" height="10" style="fill:${col}"/>` + text(26, 113 + i * 14, n, "t-xs t-m")));
-    art += text(8, 166, "プロセス", "t-xs t-b") + `<rect x="70" y="156" width="62" height="14" rx="7" class="s-thin"/>` + text(101, 166, "全体｜部品", "t-xs t-m", "middle");
+    art += text(8, 166, "Process", "t-xs t-b") + `<rect x="70" y="156" width="62" height="14" rx="7" class="s-thin"/>` + text(101, 166, "Global｜Objects", "t-xs t-m", "middle");
     art += `<rect x="8" y="176" width="124" height="14" rx="2" class="s-thin"/>` + text(12, 186, "0.20mm Standard ▾", "t-xs t-m");
-    ["品質", "強度", "速度", "サポート", "その他"].forEach((t, i) => (art += text(10 + i * 26, 206, t, "t-xs t-m")));
-    ["レイヤー高さ　0.2", "壁のループ数　2", "インフィル密度　15%", "…"].forEach((t, i) => (art += text(12, 226 + i * 16, t, "t-xs t-m")));
+    ["Quality", "Strength", "Speed", "Support", "Others"].forEach((t, i) => (art += text(8 + i * 26, 206, t, "", "start", 'style="font-size:7.5px;fill:var(--muted)"')));
+    ["Layer height　0.2", "Wall loops　2", "Sparse infill density　15%", "…"].forEach((t, i) => (art += text(12, 226 + i * 16, t, "t-xs t-m")));
     for (let i = 0; i < 14; i++) art += `<rect x="${150 + i * 20}" y="28" width="14" height="14" rx="2" class="s-thin"/>`;
     const P = iso(2.6, 290, 160);
     art += H.poly([P(-40, -40, 0), P(40, -40, 0), P(40, 40, 0), P(-40, 40, 0)], "", 'style="fill:var(--surface-2);stroke:var(--rule)"');
@@ -44,7 +44,7 @@
     const c = cv(fig);
     c.innerHTML = svg("0 0 480 320", art + zones) + `<div class="info-pane" style="border-left-color:var(--accent-2)"></div>`;
     const pane = c.querySelector(".info-pane");
-    const sel = (i) => { c.querySelectorAll(".hot").forEach((g) => g.classList.toggle("on", +g.dataset.i === i)); pane.innerHTML = `<b>${i + 1}. ${Z[i][4]}</b>${Z[i][5]}`; };
+    const sel = (i) => { c.querySelectorAll(".hot").forEach((g) => g.classList.toggle("on", +g.dataset.i === i)); pane.innerHTML = `<b>${i + 1}. ${Z[i][4]}<span class="ja">${Z[i][5]}</span></b>${Z[i][6]}`; };
     c.querySelectorAll(".hot").forEach((g) => { g.addEventListener("click", () => sel(+g.dataset.i)); g.addEventListener("mouseenter", () => sel(+g.dataset.i)); });
     sel(4);
   };
@@ -103,9 +103,9 @@
 
   D.shell = (fig) => {
     const c = cv(fig);
-    c.innerHTML = `<div class="ctrl"><label>壁 <input type="range" class="i-w" min="1" max="5" value="2"></label><output class="o-w"></output>
-      <label>上下面の層 <input type="range" class="i-t" min="0" max="8" value="5"></label><output class="o-t"></output>
-      <label>インフィル <input type="range" class="i-i" min="0" max="60" step="5" value="15"></label><output class="o-i"></output></div>` +
+    c.innerHTML = `<div class="ctrl"><label>壁 <span class="en">Wall loops</span><input type="range" class="i-w" min="1" max="5" value="2"></label><output class="o-w"></output>
+      <label>上下面の層 <span class="en">Top/Bottom shell layers</span><input type="range" class="i-t" min="0" max="8" value="5"></label><output class="o-t"></output>
+      <label>インフィル <span class="en">Sparse infill density</span><input type="range" class="i-i" min="0" max="60" step="5" value="15"></label><output class="o-i"></output></div>` +
       svg("0 0 480 240", `<defs><clipPath id="sh-in"><rect class="cl"/></clipPath></defs><g class="g"></g>`) + `<div class="readout"></div>`;
     const iw = c.querySelector(".i-w"), it = c.querySelector(".i-t"), ii = c.querySelector(".i-i"), g = c.querySelector(".g"), cl = c.querySelector(".cl"), ro = c.querySelector(".readout");
     const id = "sh-in-" + ++uid; c.querySelector("clipPath").id = id;
@@ -147,11 +147,11 @@
   D.infill = (fig) => {
     const c = cv(fig);
     const INFO = {
-      grid: "グリッド：直交する2方向の線。速く、標準的。",
-      tri: "三角：3方向の線。面内のたわみに強い。",
-      gyroid: "ジャイロイド：波形の曲面。方向による強度差が小さい。少し時間がかかる。",
-      honey: "ハニカム：六角形。強いが時間がかかる。",
-      conc: "同心：外形に沿った線。TPU など柔らかい材料や、光を通したい部品向き。",
+      grid: "グリッド（Grid）：直交する2方向の線。速く、標準的。",
+      tri: "三角（Triangles）：3方向の線。面内のたわみに強い。",
+      gyroid: "ジャイロイド（Gyroid）：波形の曲面。方向による強度差が小さい。少し時間がかかる。",
+      honey: "ハニカム（Honeycomb）：六角形。強いが時間がかかる。",
+      conc: "同心（Concentric）：外形に沿った線。TPU など柔らかい材料や、光を通したい部品向き。",
     };
     let pat = "grid";
     c.innerHTML = `<div class="ctrl">${H.seg([["grid", "グリッド"], ["tri", "三角"], ["gyroid", "ジャイロイド"], ["honey", "ハニカム"], ["conc", "同心"]], pat, "パターン")}
@@ -213,7 +213,7 @@
 
   D.threshold = (fig) => {
     const c = cv(fig);
-    c.innerHTML = `<div class="ctrl"><label>しきい値角度 <input type="range" min="0" max="90" step="5" value="30"></label><output></output></div>` +
+    c.innerHTML = `<div class="ctrl"><label>しきい値角度 <span class="en">Threshold angle</span><input type="range" min="0" max="90" step="5" value="30"></label><output></output></div>` +
       svg("0 0 480 210", `<g class="g"></g>`) + `<div class="readout"></div>`;
     const r = c.querySelector("input"), out = c.querySelector("output"), g = c.querySelector(".g"), ro = c.querySelector(".readout");
     const draw = () => {
@@ -250,10 +250,10 @@
   D.seam = (fig) => {
     const c = cv(fig);
     const INFO = {
-      aligned: "整列：継ぎ目を一直線にそろえる。目立つが位置が予測でき、角に寄せれば隠れる。",
-      back: "背面：継ぎ目を後ろ側（奥）に集める。正面をきれいに見せたいとき。",
-      nearest: "最寄り：移動が短くなる位置。速いが、位置は形状次第で散る。",
-      random: "ランダム：毎層ばらばらに散らす。線は出ないが、表面全体がわずかにざらつく。",
+      aligned: "整列（Aligned）：継ぎ目を一直線にそろえる。目立つが位置が予測でき、角に寄せれば隠れる。",
+      back: "背面（Back）：継ぎ目を後ろ側（奥）に集める。正面をきれいに見せたいとき。",
+      nearest: "最寄り（Nearest）：移動が短くなる位置。速いが、位置は形状次第で散る。",
+      random: "ランダム（Random）：毎層ばらばらに散らす。線は出ないが、表面全体がわずかにざらつく。",
     };
     let m = "aligned";
     c.innerHTML = `<div class="ctrl">${H.seg([["aligned", "整列"], ["back", "背面"], ["nearest", "最寄り"], ["random", "ランダム"]], m, "シーム")}</div>` +
@@ -345,23 +345,23 @@
      ============================================================ */
   const TR = [
     { s: "第一層がくっつかない・途中で剥がれる", t: ["第一層"], c: "プレートの皮脂・ほこり、プレート種類の設定違い、ベッド温度不足。",
-      d: ["接地面を広く平らにする", "底面の角を丸めて剥がれのきっかけを減らす"], g: ["プレートを中性洗剤と水で洗う", "プリンタ設定のプレート種類を実物に合わせる", "ブリムを付ける", "必要ならベッド温度を上げる"], l: [["ブリム", "ch-slice/7"], ["印刷前チェック", "ch-print/3"]] },
+      d: ["接地面を広く平らにする", "底面の角を丸めて剥がれのきっかけを減らす"], g: ["プレートを中性洗剤と水で洗う", "プリンタ設定のプレート種類（Plate type）を実物に合わせる", "ブリム（Brim）を付ける", "必要ならベッド温度を上げる"], l: [["ブリム", "ch-slice/7"], ["印刷前チェック", "ch-print/3"]] },
     { s: "角が反り上がる", t: ["反り", "第一層"], c: "冷えて縮む力。ABS・ASA や大きな平面で起きやすい。",
       d: ["外形の角を R3 以上で丸める", "大きく平らな底面を避ける"], g: ["ブリムまたは耳を付ける", "密閉型はカバーを閉める", "ABS 系は冷却ファンを弱める"], l: [["ブリム", "ch-slice/7"], ["材料", "ch-fdm/6"]] },
     { s: "細い糸が張る（糸引き）", t: ["外観"], c: "フィラメントの吸湿、温度が高い。PETG・TPU で多い。",
-      d: ["離れた小さな島を減らす"], g: ["フィラメントを乾燥する", "ノズル温度を 5〜10℃ 下げる", "リトラクション設定がプリセット通りか確認"], l: [["材料", "ch-fdm/6"]] },
+      d: ["離れた小さな島を減らす"], g: ["フィラメントを乾燥する", "ノズル温度を 5〜10℃ 下げる", "リトラクション（Retraction）設定がプリセット通りか確認"], l: [["材料", "ch-fdm/6"]] },
     { s: "せり出した部分が垂れる", t: ["垂れ"], c: "オーバーハングが急、冷却不足、ブリッジが長い。",
       d: ["45°以内に収める", "面取り・ティアドロップに変える", "向きを変える"], g: ["サポートを付ける", "オーバーハング部の速度を下げる"], l: [["45°ルール", "ch-dfam/3"], ["サポート", "ch-slice/5"]] },
     { s: "層の境目で割れる・折れる", t: ["強度"], c: "力の向きが積層方向と同じ。層間の溶着不足。",
-      d: ["力が層に沿うように向きを変える", "根元にフィレットを付ける"], g: ["壁の数を増やす", "温度を少し上げ、冷却を弱める"], l: [["異方性", "ch-fdm/5"], ["印刷向き", "ch-dfam/2"]] },
+      d: ["力が層に沿うように向きを変える", "根元にフィレットを付ける"], g: ["壁の数（Wall loops）を増やす", "温度を少し上げ、冷却を弱める"], l: [["異方性", "ch-fdm/5"], ["印刷向き", "ch-dfam/2"]] },
     { s: "穴が小さい・部品がはまらない", t: ["寸法"], c: "穴は内側に、外形は外側にずれやすい。第一層のはみ出し。",
-      d: ["クリアランスを変数にして調整", "底面側の穴に面取り"], g: ["品質タブの X-Y 穴補正・輪郭補正", "象の足補正"], l: [["公差", "ch-dfam/6"], ["寸法の出方", "ch-fdm/4"]] },
+      d: ["クリアランスを変数にして調整", "底面側の穴に面取り"], g: ["Quality タブの X-Y 穴補正（X-Y hole compensation）・輪郭補正（X-Y contour compensation）", "象の足補正（Elephant foot compensation）"], l: [["公差", "ch-dfam/6"], ["寸法の出方", "ch-fdm/4"]] },
     { s: "サポートが外れない・跡が汚い", t: ["サポート"], c: "サポートと部品の間隔が狭い、見える面にサポートが当たっている。",
-      d: ["サポートが要らない形にする", "サポートの当たる面を見えない側へ"], g: ["ツリーサポートを試す", "サポートペイントで範囲を限定", "上部 Z 距離を確認"], l: [["サポート", "ch-slice/5"], ["ペイント", "ch-bsadv/3"]] },
+      d: ["サポートが要らない形にする", "サポートの当たる面を見えない側へ"], g: ["ツリーサポート（Tree）を試す", "サポートペイント（Support painting）で範囲を限定", "上部 Z 距離（Top Z distance）を確認"], l: [["サポート", "ch-slice/5"], ["ペイント", "ch-bsadv/3"]] },
     { s: "縦に筋が出る（継ぎ目）", t: ["外観"], c: "各層の始点と終点（シーム）がそろって見える。",
-      d: ["継ぎ目を隠せる角を設ける"], g: ["シーム位置を背面・整列に", "シームペイントで位置を指定"], l: [["シーム", "ch-slice/8"]] },
+      d: ["継ぎ目を隠せる角を設ける"], g: ["シーム位置（Seam position）を Back・Aligned に", "シームペイント（Seam painting）で位置を指定"], l: [["シーム", "ch-slice/8"]] },
     { s: "上面に穴・すき間・模様が出る", t: ["外観"], c: "上面の層が少ない、インフィルが粗い。",
-      d: [], g: ["上面の層数を増やす（目安 1mm 以上）", "インフィル密度を少し上げる"], l: [["壁と上下面", "ch-slice/3"]] },
+      d: [], g: ["上面の層数（Top shell layers）を増やす（目安 1mm 以上）", "インフィル密度を少し上げる"], l: [["壁と上下面", "ch-slice/3"]] },
   ];
   D.trouble = (fig) => {
     const c = cv(fig);

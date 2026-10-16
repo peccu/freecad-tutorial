@@ -10,8 +10,8 @@
     <figure class="fig" data-demo="fcui">
       <figcaption>FreeCAD のメインウィンドウ（模式図）。番号を選ぶと説明が出る。</figcaption>
     </figure>
-    <p>実際に手を動かすのは、ほとんどが 3Dビュー・モデルツリー・タスクパネルの3か所。ツールを起動するとコンボビューが［タスク］タブに切り替わり、そこで数値を入れて <span class="ui">OK</span> で確定する。</p>
-    <div class="box lost"><p>パネルを閉じてしまったら［表示］→［パネル］から、ツールバーが消えたら［表示］→［ツールバー］から戻す。</p></div>
+    <p>実際に手を動かすのは、ほとんどが 3Dビュー・モデルツリー・タスクパネルの3か所。ツールを起動するとコンボビューが<span class="ui">Tasks</span><span class="ja">タスク</span>タブに切り替わり、そこで数値を入れて <span class="ui">OK</span> で確定する。</p>
+    <div class="box lost"><p>パネルを閉じてしまったら<span class="ui">View → Panels</span><span class="ja">表示 → パネル</span>から、ツールバーが消えたら<span class="ui">View → Toolbars</span><span class="ja">表示 → ツールバー</span>から戻す。</p></div>
   </article>
 
   <article class="slide" data-title="ワークベンチ">
@@ -37,7 +37,7 @@
       <figcaption>標準ビューの切り替え。FreeCAD と同じく、正面は −Y 側から、上面は +Z 側から見た向き。</figcaption>
     </figure>
     <h3>マウス操作</h3>
-    <p>マウス操作の割り当ては「ナビゲーションスタイル」で決まる。現在のスタイルはステータスバー右端に表示され、クリックで切り替えられる。</p>
+    <p>マウス操作の割り当ては「ナビゲーションスタイル」<span class="en">Navigation style</span>で決まる。現在のスタイルはステータスバー右端に表示され、クリックで切り替えられる。</p>
     <div class="table-wrap"><table>
       <tr><th>操作</th><th>CAD スタイル</th><th>Gesture スタイル</th></tr>
       <tr><td>回転</td><td>中ボタンを押したまま左（または右）ボタンでドラッグ</td><td>左ボタンでドラッグ</td></tr>
@@ -50,12 +50,12 @@
 
   <article class="slide" data-title="最初に済ませる設定">
     <h2>最初に済ませる設定</h2>
-    <p>設定画面は Windows・Linux では［編集］→［設定］、macOS では［FreeCAD］→［設定］。1.1 から設定画面に検索欄が付いた。</p>
+    <p>設定画面は Windows・Linux では<span class="ui">Edit → Preferences</span><span class="ja">編集 → 設定</span>、macOS では<span class="ui">FreeCAD → Preferences</span><span class="ja">FreeCAD → 設定</span>。1.1 から設定画面に検索欄が付いた。</p>
     <ol class="steps progressive">
-      <li><b>単位系</b>　［一般］→ 単位系を <code>Standard (mm, kg, s, °)</code> にする。小数点以下の桁数は 2 以上</li>
-      <li><b>ナビゲーションスタイル</b>　［表示］→［ナビゲーション］で、手になじむスタイルを選ぶ。迷ったら CAD</li>
-      <li><b>バックアップ</b>　［一般］→［文書］で、保存時のバックアップファイル数を 2〜3 に。自動保存（復旧情報）も有効にする</li>
-      <li><b>言語</b>　［一般］→ 言語。メニュー名を英語の解説と照らし合わせたいときは English に切り替える</li>
+      <li><b>単位系</b><span class="en">Unit system</span>　<span class="ui">General</span><span class="ja">一般</span>→ 単位系を <code>Standard (mm, kg, s, °)</code> にする。小数点以下の桁数は 2 以上</li>
+      <li><b>ナビゲーションスタイル</b><span class="en">Navigation style</span>　<span class="ui">Display → Navigation</span><span class="ja">表示 → ナビゲーション</span>で、手になじむスタイルを選ぶ。迷ったら CAD</li>
+      <li><b>バックアップ</b><span class="en">Backup files / AutoRecovery</span>　<span class="ui">General → Document</span><span class="ja">一般 → 文書</span>で、保存時のバックアップファイル数を 2〜3 に。自動保存（復旧情報）も有効にする</li>
+      <li><b>言語</b><span class="en">Language</span>　<span class="ui">General</span><span class="ja">一般</span>→ 言語。メニュー名を英語の解説と照らし合わせたいときは English に切り替える</li>
     </ol>
     <div class="box verify"><p>設定項目の場所は版によって移動することがある。見つからないときは設定画面の検索欄に「単位」「バックアップ」などと入れる。</p></div>
   </article>
@@ -65,8 +65,8 @@
     <dl class="defs">
       <dt>.FCStd</dt><dd>FreeCAD の文書ファイル。形状・履歴・スプレッドシートがまとめて入る。中身は ZIP 形式。</dd>
       <dt>.FCBak</dt><dd>保存時に自動で作られる1つ前の版。拡張子を .FCStd に変えると開ける。</dd>
-      <dt>再計算</dt><dd>寸法を変えたあと形状を作り直す処理。ツールバーの再計算ボタン、または <kbd>Ctrl</kbd>+<kbd>R</kbd>。ツリーに青い再計算マークが付いたものが対象。</dd>
-      <dt>元に戻す</dt><dd><kbd>Ctrl</kbd>+<kbd>Z</kbd>。スケッチ編集中は、スケッチ内の操作だけが対象になる。</dd>
+      <dt>再計算<span class="en">Recompute</span></dt><dd>寸法を変えたあと形状を作り直す処理。ツールバーの再計算ボタン、または <kbd>Ctrl</kbd>+<kbd>R</kbd>。ツリーに青い再計算マークが付いたものが対象。</dd>
+      <dt>元に戻す<span class="en">Undo</span></dt><dd><kbd>Ctrl</kbd>+<kbd>Z</kbd>。スケッチ編集中は、スケッチ内の操作だけが対象になる。</dd>
     </dl>
     <div class="box point"><p>3Dプリンタ用に書き出す STL・3MF とは別に、元の .FCStd を必ず残す。寸法の修正は .FCStd 側で行う。</p></div>
   </article>
@@ -75,11 +75,11 @@
     <h2>迷ったときの戻り方</h2>
     <div class="table-wrap"><table>
       <tr><th>状況</th><th>対処</th></tr>
-      <tr><td>形状が画面から消えた・小さすぎる</td><td><kbd>V</kbd> <kbd>F</kbd>（全体表示）</td></tr>
-      <tr><td>どの向きから見ているか分からない</td><td><kbd>0</kbd>（アイソメ）か <kbd>1</kbd>（正面）</td></tr>
+      <tr><td>形状が画面から消えた・小さすぎる</td><td><kbd>V</kbd> <kbd>F</kbd>（全体表示 Fit all）</td></tr>
+      <tr><td>どの向きから見ているか分からない</td><td><kbd>0</kbd>（アイソメ Isometric）か <kbd>1</kbd>（正面）</td></tr>
       <tr><td>形状が見えない（ツリーにはある）</td><td>選択して <kbd>Space</kbd> で表示を切り替え</td></tr>
       <tr><td>ツールのボタンが見当たらない</td><td>ワークベンチが Part Design になっているか確認</td></tr>
-      <tr><td>何かの編集モードから抜けられない</td><td>タスクパネルの <span class="ui">閉じる</span> ／ <span class="ui">キャンセル</span>、または <kbd>Esc</kbd></td></tr>
+      <tr><td>何かの編集モードから抜けられない</td><td>タスクパネルの <span class="ui">Close</span><span class="ja">閉じる</span> ／ <span class="ui">Cancel</span><span class="ja">キャンセル</span>、または <kbd>Esc</kbd></td></tr>
       <tr><td>ツリーに赤や黄色の印が出た</td><td>レポートビューでエラー内容を読む。直前の操作を <kbd>Ctrl</kbd>+<kbd>Z</kbd></td></tr>
       <tr><td>新しく足した形状が反映されない</td><td>Tip（先端）の位置を確認（<a href="#ch-partdesign/2">第4章</a>）</td></tr>
     </table></div>

@@ -6,7 +6,7 @@
   const D = window.Demos, H = window.FigHelpers;
   const { cv, svg, f, poly, text, line, dimH, dimV, note, iso, isoBox } = H;
   const mini = (items, vb = "0 0 200 140") => `<div class="mini-grid">${items.map(([t, s, d]) =>
-    `<div><div class="mini-svg">${svg(vb, s)}</div><b>${t}</b>${d ? `<span>${d}</span>` : ""}</div>`).join("")}</div>`;
+    `<div><div class="mini-svg">${svg(vb, s)}</div><b>${t.split("|")[0]}${t.includes("|") ? `<span class="en">${t.split("|")[1]}</span>` : ""}</b>${d ? `<span>${d}</span>` : ""}</div>`).join("")}</div>`;
 
   /* ============================================================
      第4章：Part Design
@@ -71,8 +71,8 @@
         return `<ellipse cx="${f(x)}" cy="${f(y)}" rx="6" ry="13" transform="rotate(${f(-50 * t + 10)} ${f(x)} ${f(y)})" style="fill:none;stroke:${t === 0 ? "var(--ink)" : "var(--muted)"};stroke-width:${t === 0 ? 1.6 : 1}"/>`;
       }).join("");
     cv(fig).innerHTML = mini([
-      ["パッド", pad, "スケッチを押し出す"], ["回転", rev, "断面を軸まわりに回す"],
-      ["ロフト", loft, "2つ以上の断面をつなぐ"], ["パイプ", pipe, "断面を経路に沿わせる"],
+      ["パッド|Pad", pad, "スケッチを押し出す"], ["回転|Revolution", rev, "断面を軸まわりに回す"],
+      ["ロフト|Additive Loft", loft, "2つ以上の断面をつなぐ"], ["パイプ|Additive Pipe", pipe, "断面を経路に沿わせる"],
     ]);
   };
 
@@ -85,8 +85,8 @@
     s += cut(`M276 ${T} h48 l-12 12 v${B - T - 12} h-24 v-${B - T - 12} z`);
     s += cut(`M392 ${T} h18 v${B - T} h-18 z`);
     for (let y = T + 6; y < B; y += 8) s += line(388, y, 392, y + 4, "s-thin") + line(410, y + 4, 414, y, "s-thin");
-    [[70, "単純穴", "通し穴・位置決め"], [185, "座ぐり", "ボルト頭を沈める"], [300, "皿穴", "皿ネジ用（90°）"], [401, "下穴", "タッピングで直接締める"]]
-      .forEach(([x, t, d]) => { s += text(x, 30, t, "t-s t-b", "middle") + text(x, 46, d, "t-xs t-m", "middle"); });
+    [[70, "単純穴", "Simple hole", "通し穴・位置決め"], [185, "座ぐり", "Counterbore", "ボルト頭を沈める"], [300, "皿穴", "Countersink", "皿ネジ用（90°）"], [401, "下穴", "Tap drill", "タッピングで直接締める"]]
+      .forEach(([x, t, en, d]) => { s += text(x, 22, t, "t-s t-b", "middle") + text(x, 36, en, "t-xs t-m", "middle") + text(x, 50, d, "t-xs t-m", "middle"); });
     s += text(10, 156, "断面図。ハッチングが材料。", "t-xs t-m");
     cv(fig).innerHTML = svg("0 0 480 165", s);
   };
@@ -101,8 +101,8 @@
     const dra = `<path d="M50 30 L30 120 H170 L150 30 Z" class="s-mat"/><path d="M50 30 V120" class="s-dash"/>` +
       `<path d="M50 70 a40 40 0 0 0 -9 0" class="s-acc-l"/>` + text(58, 74, "勾配", "t-xs t-acc");
     cv(fig).innerHTML = mini([
-      ["フィレット", fil, "角を丸める"], ["面取り", cha, "角を斜めに落とす"],
-      ["厚み", thk, "中をくり抜いて殻にする"], ["抜き勾配", dra, "面に傾斜をつける"],
+      ["フィレット|Fillet", fil, "角を丸める"], ["面取り|Chamfer", cha, "角を斜めに落とす"],
+      ["厚み|Thickness", thk, "中をくり抜いて殻にする"], ["抜き勾配|Draft", dra, "面に傾斜をつける"],
     ]);
   };
 
@@ -115,7 +115,7 @@
     let pol = `<circle cx="100" cy="72" r="56" class="s-mat"/><circle cx="100" cy="72" r="14" style="fill:var(--fig-bg);stroke:var(--text)"/>`;
     for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2 - Math.PI / 2; pol += `<circle cx="${f(100 + 36 * Math.cos(a))}" cy="${f(72 + 36 * Math.sin(a))}" r="7" style="fill:var(--fig-bg);stroke:${i ? "var(--ink)" : "var(--text)"};stroke-width:1.3;${i ? "stroke-dasharray:3 2" : ""}"/>`; }
     pol += `<path d="M138 36 a52 52 0 0 1 14 30" class="s-acc-l" marker-end="url(#ar-acc)"/>`;
-    cv(fig).innerHTML = mini([["ミラー", mir, "面に対して反転複写"], ["直線パターン", lin, "方向と間隔で並べる"], ["円形パターン", pol, "軸まわりに並べる"]]);
+    cv(fig).innerHTML = mini([["ミラー|Mirrored", mir, "面に対して反転複写"], ["直線パターン|LinearPattern", lin, "方向と間隔で並べる"], ["円形パターン|PolarPattern", pol, "軸まわりに並べる"]]);
   };
 
   D.clip = (fig) => {
@@ -397,7 +397,7 @@
       <line x1="60" y1="46" x2="130" y2="46" class="s-acc-l" marker-start="url(#ar-acc)" marker-end="url(#ar-acc)"/>`;
     const cyl = `<rect x="40" y="55" width="80" height="40" class="s-mat"/><rect x="20" y="68" width="160" height="14" rx="7" class="s-mat2"/>
       <line x1="140" y1="45" x2="180" y2="45" class="s-acc-l" marker-start="url(#ar-acc)" marker-end="url(#ar-acc)"/><path d="M150 112 a20 8 0 1 0 24 0" class="s-acc-l" marker-end="url(#ar-acc)"/>`;
-    cv(fig).innerHTML = mini([["固定", fixed, "動かない"], ["回転", rev, "1軸まわりに回る（ヒンジ）"], ["スライダー", sld, "1方向に滑る"], ["円筒", cyl, "回転＋軸方向の移動"]]);
+    cv(fig).innerHTML = mini([["固定|Fixed", fixed, "動かない"], ["回転|Revolute", rev, "1軸まわりに回る（ヒンジ）"], ["スライダー|Slider", sld, "1方向に滑る"], ["円筒|Cylindrical", cyl, "回転＋軸方向の移動"]]);
   };
 
   D.interfere = (fig) => {

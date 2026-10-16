@@ -19,12 +19,12 @@
 
   <article class="slide" data-title="メッシュの細かさ">
     <h2>メッシュの細かさ</h2>
-    <p>STL・3MF では、曲面が細かい平面（三角形）の集まりに置き換えられる。元の曲面からのずれ（偏差）の上限で細かさが決まる。</p>
+    <p>STL・3MF では、曲面が細かい平面（三角形）の集まりに置き換えられる。元の曲面からのずれ（偏差<span class="en">Deviation</span>）の上限で細かさが決まる。</p>
     <figure class="fig" data-demo="tess">
       <figcaption>偏差と円周の分割数。小さくするほど元の円に近づくが、ファイルは大きくなる。</figcaption>
     </figure>
     <p>3Dプリントでは偏差 0.01〜0.05mm 程度で十分。プリンタの線幅（0.4mm 前後）より十分小さければ、それ以上細かくしても印刷結果は変わらない。</p>
-    <div class="box verify"><p>FreeCAD での設定場所：［設定］→［インポート/エクスポート］→［メッシュ形式］の「最大メッシュ偏差」。Mesh Design ワークベンチの［形状からメッシュを作成］を使うと、書き出しごとに偏差を指定できる。</p></div>
+    <div class="box verify"><p>FreeCAD での設定場所：<span class="ui">Preferences → Import-Export → Mesh Formats</span><span class="ja">設定 → インポート/エクスポート → メッシュ形式</span>の「最大メッシュ偏差」<span class="en">Maximum mesh deviation</span>。Mesh Design ワークベンチの<span class="ui">Create mesh from shape</span><span class="ja">形状からメッシュを作成</span>を使うと、書き出しごとに偏差を指定できる。</p></div>
   </article>
 
   <article class="slide" data-title="書き出しの手順">
@@ -33,7 +33,7 @@
       <div class="tab" data-label="3MF・STL">
         <ol class="steps progressive">
           <li>モデルツリーで<b>ボディ</b>を選ぶ（中のフィーチャではない）。複数部品なら <kbd>Ctrl</kbd>+クリックで追加</li>
-          <li>［ファイル］→［エクスポート］（<kbd>Ctrl</kbd>+<kbd>E</kbd>）</li>
+          <li><span class="ui">File → Export</span><span class="ja">ファイル → エクスポート</span>（<kbd>Ctrl</kbd>+<kbd>E</kbd>）</li>
           <li>ファイルの種類で「3D Manufacturing Format (*.3mf)」または「STL Mesh (*.stl)」を選ぶ</li>
           <li>ファイル名を付けて保存する</li>
         </ol>
@@ -41,8 +41,8 @@
       <div class="tab" data-label="STEP">
         <ol class="steps progressive">
           <li>ボディを選ぶ</li>
-          <li>［ファイル］→［エクスポート］で「STEP (*.step *.stp)」を選んで保存</li>
-          <li>Bambu Studio で読み込むと、メッシュ化の細かさ（線形・角度の偏差）を指定する画面が出る</li>
+          <li><span class="ui">File → Export</span><span class="ja">ファイル → エクスポート</span>で「STEP (*.step *.stp)」を選んで保存</li>
+          <li>Bambu Studio で読み込むと、メッシュ化の細かさ（線形・角度の偏差<span class="en">Linear / Angle deflection</span>）を指定する画面が出る</li>
         </ol>
       </div>
     </div>
@@ -55,8 +55,8 @@
     <div class="table-wrap"><table>
       <tr><th>確認方法</th><th>見るところ</th></tr>
       <tr><td>Bambu Studio に読み込む</td><td>読み込み時の修復メッセージ、オブジェクト一覧の警告マーク</td></tr>
-      <tr><td>FreeCAD の Mesh Design</td><td>［メッシュ］→［解析］→［評価と修復］で、穴・重複・裏返りを検査</td></tr>
-      <tr><td>FreeCAD の Part ワークベンチ</td><td>書き出す前に、ボディを選んで［パート］→［ジオメトリをチェック］</td></tr>
+      <tr><td>FreeCAD の Mesh Design</td><td><span class="ui">Meshes → Analyze → Evaluate and repair mesh</span><span class="ja">メッシュ → 解析 → 評価と修復</span>で、穴・重複・裏返りを検査</td></tr>
+      <tr><td>FreeCAD の Part ワークベンチ</td><td>書き出す前に、ボディを選んで<span class="ui">Part → Check geometry</span><span class="ja">パート → ジオメトリをチェック</span></td></tr>
     </table></div>
     <div class="quiz" data-id="ex-1">
       <p class="q">形状の大きさを取り違えにくい書き出し形式はどれか。</p>

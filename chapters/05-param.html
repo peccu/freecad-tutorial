@@ -7,7 +7,7 @@
 
   <article class="slide" data-title="式を入れる">
     <h2>式を入れる</h2>
-    <p>寸法の入力欄で <kbd>=</kbd> を押すと式エディタが開く。数値の代わりに、他の寸法や変数を使った式を書ける。式が入った欄には ƒx の印が付く。</p>
+    <p>寸法の入力欄で <kbd>=</kbd> を押すと式エディタ<span class="en">Expression editor</span>が開く。数値の代わりに、他の寸法や変数を使った式を書ける。式が入った欄には ƒx の印が付く。</p>
     <figure class="fig" data-demo="expr">
       <figcaption>式の例。上の2行の値を変えると、下の3行の結果が追従する。</figcaption>
     </figure>
@@ -29,7 +29,7 @@
     </figure>
     <div class="table-wrap"><table>
       <tr><th></th><th><span class="term">スプレッドシート</span></th><th>変数セット（VarSet）</th></tr>
-      <tr><td>作り方</td><td>Spreadsheet ワークベンチで作成し、セルに「別名」を付ける</td><td>ツールバーの［変数セット］で作り、プロパティを追加する</td></tr>
+      <tr><td>作り方</td><td>Spreadsheet ワークベンチで作成し、セルに「別名」<span class="en">Alias</span>を付ける</td><td>ツールバーの<span class="ui">Add variable set</span><span class="ja">変数セット</span>で作り、プロパティを追加する</td></tr>
       <tr><td>見た目</td><td>表。説明や計算をセルに並べられる</td><td>プロパティビューの一覧</td></tr>
       <tr><td>向いている場面</td><td>変数が多い、説明を書き添えたい</td><td>変数が少なく、手軽に済ませたい</td></tr>
     </table></div>
@@ -69,7 +69,7 @@
       <li>スプレッドシートを作り、A列に名前、B列に値を入れる。B列のセルに別名 <code>width</code> <code>depth</code> <code>height</code> <code>wall</code> <code>clr</code> を付ける</li>
       <li>本体ボディ：XY 平面に長方形を描き、原点に対して対称に置く。幅・奥行に <code>=Spreadsheet.width</code> などの式</li>
       <li>パッドの長さに <code>=Spreadsheet.height</code></li>
-      <li>［厚み］で上面を開口に、肉厚 <code>=Spreadsheet.wall</code></li>
+      <li><span class="ui">Thickness</span><span class="ja">厚み</span>で上面を開口に、肉厚 <code>=Spreadsheet.wall</code></li>
       <li>フタのボディを新しく作る。板のスケッチは本体と同じ式、爪のスケッチは <code>=Spreadsheet.width - 2 * Spreadsheet.wall - 2 * Spreadsheet.clr</code></li>
       <li>width を 60 → 80 に変えて再計算し、本体とフタが両方追従することを確かめる</li>
     </ol>
